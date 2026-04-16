@@ -1,26 +1,86 @@
 import Link from 'next/link'
-import { CheckCircle2, Sparkles } from 'lucide-react'
+import { CheckCircle2, Sparkles, Zap } from 'lucide-react'
 
 const plans = [
-  { name: 'FREE', price: 'R$ 0', description: 'Para começar a aparecer na plataforma.', features: ['Perfil público básico', 'Até 2 especialidades', '1 cidade atendida', 'Contato oculto'], cta: 'Começar grátis', highlighted: false },
-  { name: 'STARTER', price: 'R$ 39,90', description: 'Para quem quer mais credibilidade e contato liberado.', features: ['Contato visível', '5 fotos', '5 especialidades', '3 cidades', 'Solicitar avaliações'], cta: 'Assinar Starter', highlighted: false },
-  { name: 'PRO', price: 'R$ 79,90', description: 'Plano ideal para gerar leads e crescer com destaque.', features: ['Receber orçamentos', '15 fotos', '15 especialidades', '10 cidades', 'Mais destaque na busca'], cta: 'Assinar Pro', highlighted: true },
-  { name: 'PREMIUM', price: 'R$ 149,90', description: 'Máxima visibilidade, confiança e prioridade.', features: ['Topo da busca', 'Recursos ampliados', 'Selo premium', 'Orçamentos prioritários', 'Mais conversão'], cta: 'Assinar Premium', highlighted: false },
+  {
+    name: 'FREE',
+    price: 'R$ 0',
+    note: '/mês',
+    description: 'Para entrar no ar, validar seu perfil e começar a aparecer nas buscas.',
+    features: ['Perfil público básico', 'Até 2 especialidades', '1 cidade atendida', 'Contato oculto'],
+    cta: 'Começar grátis',
+    tone: 'from-white/8 to-white/3',
+  },
+  {
+    name: 'STARTER',
+    price: 'R$ 39,90',
+    note: '/mês',
+    description: 'Ideal para liberar contato e aumentar a sensação de credibilidade logo no início.',
+    features: ['Contato visível', '5 fotos', '5 especialidades', '3 cidades', 'Solicitar avaliações'],
+    cta: 'Assinar Starter',
+    tone: 'from-cyan-500/18 to-sky-500/8',
+  },
+  {
+    name: 'PRO',
+    price: 'R$ 79,90',
+    note: '/mês',
+    description: 'O melhor equilíbrio entre visibilidade, reputação e geração de orçamentos.',
+    features: ['Receber orçamentos', '15 fotos', '15 especialidades', '10 cidades', 'Mais destaque na busca'],
+    cta: 'Assinar Pro',
+    highlighted: true,
+    tone: 'from-cyan-500/20 via-violet-500/14 to-white/4',
+  },
+  {
+    name: 'PREMIUM',
+    price: 'R$ 149,90',
+    note: '/mês',
+    description: 'Para quem quer presença premium, prioridade comercial e mais percepção de valor.',
+    features: ['Topo da busca', 'Recursos ampliados', 'Selo premium', 'Orçamentos prioritários', 'Mais conversão'],
+    cta: 'Assinar Premium',
+    tone: 'from-emerald-500/16 to-cyan-500/8',
+  },
 ]
 
 export function PricingGrid() {
   return (
-    <div className="grid gap-6 lg:grid-cols-4">
+    <div className="grid gap-5 xl:grid-cols-4">
       {plans.map((plan) => (
-        <div key={plan.name} className={[ 'glass rounded-[30px] border p-6', plan.highlighted ? 'border-cyan-300/24 shadow-[0_20px_60px_rgba(34,211,238,0.12)]' : '' ].join(' ')}>
+        <div
+          key={plan.name}
+          className={[
+            'glass rounded-[32px] border p-6 md:p-7',
+            plan.highlighted ? 'border-cyan-300/25 shadow-[0_26px_80px_rgba(80,146,255,0.2)]' : '',
+            'bg-gradient-to-b',
+            plan.tone,
+          ].join(' ')}
+        >
           <div className="flex items-center justify-between gap-3">
-            <div className="text-lg font-semibold text-white">{plan.name}</div>
-            {plan.highlighted ? <span className="badge bg-cyan-500/14 text-cyan-100"><Sparkles className="h-4 w-4" />Mais buscado</span> : null}
+            <div className="text-lg font-bold tracking-[-0.03em] text-white">{plan.name}</div>
+            {plan.highlighted ? <span className="badge bg-white/10 text-cyan-100"><Sparkles className="h-4 w-4" />Mais escolhido</span> : null}
           </div>
-          <div className="mt-4 text-4xl font-semibold text-white">{plan.price}<span className="text-base font-medium text-slate-400">/mês</span></div>
-          <p className="mt-4 text-sm leading-7 text-slate-400">{plan.description}</p>
-          <div className="mt-6 grid gap-3">{plan.features.map((feature) => <div key={feature} className="flex items-start gap-3 text-sm text-slate-200"><CheckCircle2 className="mt-0.5 h-4 w-4 text-cyan-300" /><span>{feature}</span></div>)}</div>
-          <Link href="/cadastro" className={plan.highlighted ? 'btn-primary mt-8 w-full' : 'btn-secondary mt-8 w-full'}>{plan.cta}</Link>
+          <div className="mt-5 flex items-end gap-2">
+            <div className="text-4xl font-black tracking-[-0.05em] text-white md:text-[2.75rem]">{plan.price}</div>
+            <div className="pb-1 text-sm text-slate-400">{plan.note}</div>
+          </div>
+          <p className="mt-4 text-sm leading-7 text-slate-300">{plan.description}</p>
+
+          <div className="mt-6 grid gap-3">
+            {plan.features.map((feature) => (
+              <div key={feature} className="flex items-start gap-3 text-sm text-slate-100">
+                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-cyan-300" />
+                <span>{feature}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 flex items-center justify-between rounded-[22px] border border-white/8 bg-slate-950/35 px-4 py-3 text-xs text-slate-400">
+            <span>Upgrade quando quiser</span>
+            <Zap className="h-4 w-4 text-cyan-300" />
+          </div>
+
+          <Link href="/cadastro" className={plan.highlighted ? 'btn-primary mt-6 w-full' : 'btn-secondary mt-6 w-full'}>
+            {plan.cta}
+          </Link>
         </div>
       ))}
     </div>

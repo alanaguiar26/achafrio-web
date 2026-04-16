@@ -2,7 +2,14 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { ArrowRight, BadgeCheck, LayoutGrid, ShieldCheck, Zap } from 'lucide-react'
 import { apiClient } from '@/lib/client-auth'
+
+const advantages = [
+  { title: 'Perfil mais confiável', text: 'Verificação, avaliações moderadas e página pública organizada para transmitir mais valor.', icon: ShieldCheck },
+  { title: 'Mais destaque comercial', text: 'Planos pagos liberam contato, ranking e recursos para quem quer crescer de verdade.', icon: Zap },
+  { title: 'Painel simples de usar', text: 'Tudo centralizado para editar perfil, reputação, orçamentos e assinatura.', icon: LayoutGrid },
+]
 
 export default function CadastroPage() {
   const [type, setType] = useState<'TECNICO' | 'EMPRESA'>('TECNICO')
@@ -28,69 +35,80 @@ export default function CadastroPage() {
   }
 
   return (
-    <div className="container-app py-14">
-      <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-        <div className="glass rounded-[32px] border p-8 md:p-10">
-          <div className="eyebrow">Cadastro profissional</div>
-          <h1 className="section-title mt-5">Crie um perfil enxuto, confiável e pronto para vender.</h1>
-          <p className="section-subtitle mt-5">Comece com o básico agora. Depois você completa bio, contato, especialidades, cidades e assinatura no painel.</p>
+    <div className="container-app py-12 md:py-14">
+      <div className="grid gap-8 lg:grid-cols-[0.92fr_1.08fr]">
+        <div className="glass rounded-[34px] border p-7 md:p-10">
+          <div className="eyebrow">Cadastrar serviço</div>
+          <h1 className="section-title-sm mt-5 max-w-xl">Crie um perfil com cara de empresa séria, mesmo começando no plano gratuito.</h1>
+          <p className="section-subtitle mt-5">
+            O cadastro já deixa sua presença mais pronta para SEO, prova social, geração de contatos e crescimento de plano sem aquela aparência genérica de diretório improvisado.
+          </p>
+
           <div className="mt-8 grid gap-4">
-            {[
-              ['Mais credibilidade', 'Verificação, avaliações moderadas e página pública organizada.'],
-              ['Mais presença', 'Planos com contato visível, ranking e mais recursos.'],
-              ['Mais controle', 'Painel para editar perfil, assinatura, avaliações e leads.'],
-            ].map(([title, text]) => (
-              <div key={title} className="rounded-[24px] border border-white/8 bg-white/4 p-5">
-                <div className="font-semibold text-white">{title}</div>
-                <div className="mt-2 text-sm leading-6 text-slate-400">{text}</div>
+            {advantages.map((item) => (
+              <div key={item.title} className="surface-inset p-5">
+                <item.icon className="h-5 w-5 text-cyan-200" />
+                <div className="mt-4 text-lg font-semibold text-white">{item.title}</div>
+                <div className="mt-2 text-sm leading-6 text-slate-400">{item.text}</div>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="glass rounded-[32px] border p-8 md:p-10">
-          <div className="text-3xl font-semibold text-white">Abra sua conta</div>
-          <p className="mt-3 text-sm leading-7 text-slate-400">Complete os dados iniciais. O restante você ajusta no painel.</p>
+        <div className="glass rounded-[34px] border p-7 md:p-10">
+          <div className="text-3xl font-black tracking-[-0.04em] text-white">Abra sua conta</div>
+          <p className="mt-3 text-sm leading-7 text-slate-400">Preencha o básico agora. O restante você ajusta com calma no painel.</p>
 
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
-            <button type="button" onClick={() => setType('TECNICO')} className={`rounded-[22px] border p-4 text-left ${type === 'TECNICO' ? 'border-cyan-300/24 bg-cyan-500/10' : 'border-white/8 bg-white/4'}`}>
+            <button type="button" onClick={() => setType('TECNICO')} className={`rounded-[22px] border p-4 text-left transition ${type === 'TECNICO' ? 'border-cyan-300/25 bg-cyan-500/10' : 'border-white/8 bg-white/4'}`}>
               <div className="font-semibold text-white">Técnico autônomo</div>
               <div className="mt-2 text-sm text-slate-400">Perfil individual com foco em serviço, contato e reputação.</div>
             </button>
-            <button type="button" onClick={() => setType('EMPRESA')} className={`rounded-[22px] border p-4 text-left ${type === 'EMPRESA' ? 'border-cyan-300/24 bg-cyan-500/10' : 'border-white/8 bg-white/4'}`}>
+            <button type="button" onClick={() => setType('EMPRESA')} className={`rounded-[22px] border p-4 text-left transition ${type === 'EMPRESA' ? 'border-violet-300/25 bg-violet-500/10' : 'border-white/8 bg-white/4'}`}>
               <div className="font-semibold text-white">Empresa</div>
-              <div className="mt-2 text-sm text-slate-400">Página institucional com mais presença e visibilidade.</div>
+              <div className="mt-2 text-sm text-slate-400">Página institucional com mais presença, portfólio e percepção de valor.</div>
             </button>
           </div>
 
           <form onSubmit={submit} className="mt-6 grid gap-4">
-            <div>
-              <label className="mb-2 block text-sm text-slate-300">Nome do perfil</label>
-              <input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="h-13 w-full rounded-2xl border border-white/10 bg-slate-950/40 px-4 text-white outline-none" />
+            <label className="grid gap-2 text-sm text-slate-200">
+              Nome do perfil
+              <input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="form-field" required />
+            </label>
+
+            <label className="grid gap-2 text-sm text-slate-200">
+              Email
+              <input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className="form-field" required />
+            </label>
+
+            <div className="grid gap-4 sm:grid-cols-[1.2fr_0.55fr]">
+              <label className="grid gap-2 text-sm text-slate-200">
+                Cidade
+                <input value={form.city} onChange={(e) => setForm({ ...form, city: e.target.value })} className="form-field" required />
+              </label>
+              <label className="grid gap-2 text-sm text-slate-200">
+                UF
+                <input value={form.state} onChange={(e) => setForm({ ...form, state: e.target.value.toUpperCase() })} className="form-field" maxLength={2} required />
+              </label>
             </div>
-            <div>
-              <label className="mb-2 block text-sm text-slate-300">Email</label>
-              <input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className="h-13 w-full rounded-2xl border border-white/10 bg-slate-950/40 px-4 text-white outline-none" />
-            </div>
-            <div className="grid gap-4 sm:grid-cols-[1fr_120px]">
-              <div>
-                <label className="mb-2 block text-sm text-slate-300">Cidade</label>
-                <input value={form.city} onChange={(e) => setForm({ ...form, city: e.target.value })} className="h-13 w-full rounded-2xl border border-white/10 bg-slate-950/40 px-4 text-white outline-none" />
-              </div>
-              <div>
-                <label className="mb-2 block text-sm text-slate-300">UF</label>
-                <input value={form.state} onChange={(e) => setForm({ ...form, state: e.target.value.toUpperCase() })} maxLength={2} className="h-13 w-full rounded-2xl border border-white/10 bg-slate-950/40 px-4 text-white outline-none" />
-              </div>
-            </div>
-            <div>
-              <label className="mb-2 block text-sm text-slate-300">Senha</label>
-              <input type="password" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} className="h-13 w-full rounded-2xl border border-white/10 bg-slate-950/40 px-4 text-white outline-none" />
-            </div>
+
+            <label className="grid gap-2 text-sm text-slate-200">
+              Senha
+              <input type="password" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} className="form-field" required />
+            </label>
+
             {error ? <div className="rounded-2xl border border-rose-400/20 bg-rose-500/10 px-4 py-3 text-sm text-rose-200">{error}</div> : null}
-            <button type="submit" disabled={loading} className="btn-primary mt-2 w-full cursor-pointer disabled:opacity-70">{loading ? 'Criando conta...' : 'Criar conta e abrir painel'}</button>
+
+            <button type="submit" disabled={loading} className="btn-primary mt-2 w-full cursor-pointer disabled:opacity-70">
+              {loading ? 'Criando conta...' : 'Criar conta e abrir painel'}
+              <ArrowRight className="h-4 w-4" />
+            </button>
           </form>
 
-          <div className="mt-5 text-sm text-slate-400">Já tem conta? <Link href="/login" className="font-semibold text-white">Entrar</Link></div>
+          <div className="mt-5 flex flex-wrap items-center gap-3 text-sm text-slate-400">
+            <span className="meta-chip"><BadgeCheck className="h-4 w-4" />Comece no FREE</span>
+            <span>Já tem conta? <Link href="/login" className="font-semibold text-cyan-200">Entrar</Link></span>
+          </div>
         </div>
       </div>
     </div>

@@ -3,8 +3,14 @@
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { FormEvent, useState } from 'react'
-import { ArrowRight, LockKeyhole, Mail } from 'lucide-react'
+import { ArrowRight, LockKeyhole, Mail, ShieldCheck, Sparkles, Zap } from 'lucide-react'
 import { apiClient, setAccessToken } from '@/lib/client-auth'
+
+const bullets = [
+  { text: 'Atualize dados, fotos, cidades e especialidades sem depender de plugin externo.', icon: ShieldCheck },
+  { text: 'Acompanhe assinatura, reputação e oportunidades dentro do mesmo painel.', icon: Sparkles },
+  { text: 'Receba avisos e leads por fluxos transacionais com n8n e Evolution.', icon: Zap },
+]
 
 export default function LoginPage() {
   const router = useRouter()
@@ -33,41 +39,42 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="container-app py-14">
-      <div className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-[0.95fr_1.05fr]">
-        <div className="glass rounded-[32px] border p-8 md:p-10">
-          <div className="text-sm font-black uppercase tracking-[0.18em] text-cyan-200">Entrar</div>
-          <h1 className="mt-4 text-4xl font-black text-white">Acesse seu painel e gerencie seu crescimento.</h1>
-          <p className="mt-4 text-base leading-8 text-slate-300">
-            Edite seu perfil, solicite avaliações, acompanhe orçamento e faça upgrade de plano sem depender de plugins extras.
+    <div className="container-app py-12 md:py-14">
+      <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.94fr_1.06fr]">
+        <div className="glass rounded-[34px] border p-7 md:p-10">
+          <div className="eyebrow">Entrar</div>
+          <h1 className="section-title-sm mt-5 max-w-xl">Volte para o seu painel e continue melhorando sua vitrine profissional.</h1>
+          <p className="section-subtitle mt-5">
+            O acesso coloca você de volta no centro da operação: perfil, reputação, orçamentos, assinatura e próximos passos do crescimento.
           </p>
           <div className="mt-8 grid gap-4">
-            {[
-              'Atualize dados, fotos, especialidades e cidades atendidas.',
-              'Receba notificações transacionais via n8n + Evolution.',
-              'Gerencie verificação, leads, avaliações e assinatura.',
-            ].map((item) => <div key={item} className="rounded-2xl border border-white/10 bg-white/4 px-4 py-3 text-sm text-slate-200">{item}</div>)}
+            {bullets.map((item) => (
+              <div key={item.text} className="surface-inset flex gap-4 p-5">
+                <div className="mt-1 text-cyan-200"><item.icon className="h-5 w-5" /></div>
+                <div className="text-sm leading-7 text-slate-300">{item.text}</div>
+              </div>
+            ))}
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="glass rounded-[32px] border p-8 md:p-10">
-          <div className="text-2xl font-black text-white">Bem-vindo de volta</div>
-          <p className="mt-2 text-sm leading-7 text-slate-400">Use o email cadastrado para entrar no painel do AchaFrio.</p>
+        <form onSubmit={handleSubmit} className="glass rounded-[34px] border p-7 md:p-10">
+          <div className="text-3xl font-black tracking-[-0.04em] text-white">Bem-vindo de volta</div>
+          <p className="mt-3 text-sm leading-7 text-slate-400">Use o email cadastrado para abrir o painel do AchaFrio.</p>
 
-          <div className="mt-6 grid gap-4">
+          <div className="mt-7 grid gap-4">
             <label className="grid gap-2 text-sm text-slate-200">
               Email
-              <div className="flex items-center rounded-2xl border border-white/10 bg-slate-950/45 px-4">
-                <Mail className="h-4 w-4 text-slate-500" />
-                <input className="h-13 w-full bg-transparent px-3 text-white outline-none" type="email" value={email} onChange={(event) => setEmail(event.target.value)} required />
+              <div className="flex items-center rounded-[18px] border border-white/10 bg-slate-950/42 px-4">
+                <Mail className="h-4 w-4 text-cyan-200/80" />
+                <input className="form-field border-0 bg-transparent px-3 shadow-none focus:shadow-none" type="email" value={email} onChange={(event) => setEmail(event.target.value)} required />
               </div>
             </label>
 
             <label className="grid gap-2 text-sm text-slate-200">
               Senha
-              <div className="flex items-center rounded-2xl border border-white/10 bg-slate-950/45 px-4">
-                <LockKeyhole className="h-4 w-4 text-slate-500" />
-                <input className="h-13 w-full bg-transparent px-3 text-white outline-none" type="password" value={password} onChange={(event) => setPassword(event.target.value)} required />
+              <div className="flex items-center rounded-[18px] border border-white/10 bg-slate-950/42 px-4">
+                <LockKeyhole className="h-4 w-4 text-violet-200/80" />
+                <input className="form-field border-0 bg-transparent px-3 shadow-none focus:shadow-none" type="password" value={password} onChange={(event) => setPassword(event.target.value)} required />
               </div>
             </label>
           </div>
@@ -80,7 +87,7 @@ export default function LoginPage() {
           </button>
 
           <div className="mt-5 text-sm text-slate-400">
-            Ainda não tem conta? <Link href="/cadastro" className="font-bold text-cyan-200">Criar cadastro</Link>
+            Ainda não tem conta? <Link href="/cadastro" className="font-semibold text-cyan-200">Criar cadastro</Link>
           </div>
         </form>
       </div>

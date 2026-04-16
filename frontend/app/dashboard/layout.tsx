@@ -3,8 +3,8 @@ import { DashboardNav } from '@/components/dashboard/nav'
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="container-app py-12">
-      <div className="grid gap-6 lg:grid-cols-[280px_1fr]">
+    <div className="container-app py-10 md:py-12">
+      <div className="grid gap-6 xl:grid-cols-[286px_1fr]">
         <DashboardNav />
         <div>{children}</div>
       </div>

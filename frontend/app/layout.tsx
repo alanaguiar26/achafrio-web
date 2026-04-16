@@ -7,7 +7,7 @@ import { siteConfig } from '@/lib/site'
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: 'AchaFrio — encontre técnicos e empresas de ar-condicionado',
+    default: 'AchaFrio — profissionais de ar-condicionado com presença premium',
     template: '%s | AchaFrio',
   },
   description: siteConfig.description,
@@ -17,9 +17,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="pt-BR">
       <body>
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <div className="page-shell min-h-screen">
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </div>
       </body>
     </html>
   )
