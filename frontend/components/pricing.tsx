@@ -12,12 +12,12 @@ export function PricingGrid() {
   return (
     <div className="grid gap-6 lg:grid-cols-4">
       {plans.map((plan) => (
-        <div key={plan.name} className={[ 'glass rounded-[30px] border p-6', plan.highlighted ? 'border-cyan-300/30 shadow-[0_20px_60px_rgba(34,211,238,0.16)]' : '' ].join(' ')}>
-          <div className="flex items-center justify-between">
-            <div className="text-lg font-black text-white">{plan.name}</div>
-            {plan.highlighted ? <span className="badge bg-cyan-500/14 text-cyan-100"><Sparkles className="h-4 w-4" />Mais vendido</span> : null}
+        <div key={plan.name} className={[ 'glass rounded-[30px] border p-6', plan.highlighted ? 'border-cyan-300/24 shadow-[0_20px_60px_rgba(34,211,238,0.12)]' : '' ].join(' ')}>
+          <div className="flex items-center justify-between gap-3">
+            <div className="text-lg font-semibold text-white">{plan.name}</div>
+            {plan.highlighted ? <span className="badge bg-cyan-500/14 text-cyan-100"><Sparkles className="h-4 w-4" />Mais buscado</span> : null}
           </div>
-          <div className="mt-4 text-4xl font-black text-white">{plan.price}<span className="text-base font-semibold text-slate-400">/mês</span></div>
+          <div className="mt-4 text-4xl font-semibold text-white">{plan.price}<span className="text-base font-medium text-slate-400">/mês</span></div>
           <p className="mt-4 text-sm leading-7 text-slate-400">{plan.description}</p>
           <div className="mt-6 grid gap-3">{plan.features.map((feature) => <div key={feature} className="flex items-start gap-3 text-sm text-slate-200"><CheckCircle2 className="mt-0.5 h-4 w-4 text-cyan-300" /><span>{feature}</span></div>)}</div>
           <Link href="/cadastro" className={plan.highlighted ? 'btn-primary mt-8 w-full' : 'btn-secondary mt-8 w-full'}>{plan.cta}</Link>

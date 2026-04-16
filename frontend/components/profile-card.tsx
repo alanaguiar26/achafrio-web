@@ -8,7 +8,7 @@ function planLabel(plan: PublicProfile['plan']) {
 
 export function ProfileCard({ profile }: { profile: PublicProfile }) {
   return (
-    <div className="glass card-hover rounded-[30px] border p-5">
+    <div className="glass card-hover rounded-[30px] border p-5 md:p-6">
       <div className="flex items-start justify-between gap-4">
         <div className="flex gap-4">
           <div className="h-16 w-16 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
@@ -16,7 +16,7 @@ export function ProfileCard({ profile }: { profile: PublicProfile }) {
           </div>
           <div>
             <div className="flex flex-wrap items-center gap-2">
-              <h3 className="text-lg font-black text-white">{profile.name}</h3>
+              <h3 className="text-lg font-semibold text-white">{profile.name}</h3>
               {profile.verified ? <span className="badge bg-emerald-500/12 text-emerald-300"><BadgeCheck className="h-4 w-4" />Verificado</span> : null}
               <span className="badge bg-cyan-500/12 text-cyan-200">{planLabel(profile.plan)}</span>
             </div>
@@ -28,7 +28,7 @@ export function ProfileCard({ profile }: { profile: PublicProfile }) {
         </div>
       </div>
       <p className="mt-5 line-clamp-3 text-sm leading-7 text-slate-300">{profile.bio || 'Perfil profissional com atendimento especializado e foco em qualidade, agilidade e confiança.'}</p>
-      <div className="mt-5 flex flex-wrap gap-2">{profile.specialties.slice(0, 4).map((item) => <span key={item.id} className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold text-cyan-100">{item.name}</span>)}</div>
+      <div className="mt-5 flex flex-wrap gap-2">{profile.specialties.slice(0, 4).map((item) => <span key={item.id} className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-cyan-100">{item.name}</span>)}</div>
       <div className="mt-6 flex flex-wrap gap-3">
         <Link href={`/perfil/${profile.slug}`} className="btn-primary text-sm">Ver perfil</Link>
         {profile.contact?.whatsapp ? <a href={`https://wa.me/${profile.contact.whatsapp.replace(/\D/g, '')}`} className="btn-secondary text-sm" target="_blank"><MessageCircle className="h-4 w-4" />WhatsApp</a> : null}

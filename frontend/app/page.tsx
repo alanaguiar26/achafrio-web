@@ -9,9 +9,9 @@ export default function HomePage() {
   return (
     <>
       <section className="container-app pt-12 md:pt-16">
-        <div className="grid items-center gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+        <div className="grid items-center gap-8 lg:grid-cols-[1.18fr_0.82fr]">
           <div>
-            <div className="mb-5 inline-flex rounded-full border border-cyan-300/12 bg-cyan-500/10 px-3 py-1 text-xs font-black uppercase tracking-[0.18em] text-cyan-200">
+            <div className="mb-5 inline-flex rounded-full border border-cyan-300/12 bg-cyan-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">
               Plataforma nacional para HVAC & refrigeração
             </div>
             <h1 className="section-title max-w-4xl">
@@ -19,7 +19,7 @@ export default function HomePage() {
             </h1>
             <p className="section-subtitle mt-6 max-w-2xl">
               O AchaFrio conecta clientes a técnicos autônomos e empresas em todo o Brasil com perfis verificados,
-              avaliações reais, busca por cidade e recursos de conversão para transformar visitas em contatos.
+              avaliações reais e busca por cidade para transformar visitas em contato mais rápido.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -41,11 +41,11 @@ export default function HomePage() {
           </div>
 
           <Surface className="overflow-hidden">
-            <div className="rounded-[26px] border border-cyan-200/10 bg-slate-950/40 p-5">
-              <div className="flex items-center justify-between">
+            <div className="rounded-[26px] border border-cyan-200/10 bg-slate-950/30 p-5">
+              <div className="flex items-center justify-between gap-4">
                 <div>
-                  <div className="text-xs font-black uppercase tracking-[0.2em] text-cyan-200">Busca inteligente</div>
-                  <div className="mt-2 text-2xl font-black text-white">Ache mais rápido.</div>
+                  <div className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">Busca inteligente</div>
+                  <div className="mt-2 text-2xl font-semibold text-white">Procure por cidade, UF e especialidade.</div>
                 </div>
                 <div className="badge bg-emerald-500/12 text-emerald-300">
                   <BadgeCheck className="h-4 w-4" />
@@ -54,9 +54,7 @@ export default function HomePage() {
               </div>
 
               <div className="mt-6">
-                <Suspense
-                  fallback={<div className="glass rounded-[28px] border p-5 text-sm text-slate-400">Carregando busca…</div>}
-                >
+                <Suspense fallback={<div className="glass rounded-[28px] border p-5 text-sm text-slate-400">Carregando busca…</div>}>
                   <SearchForm />
                 </Suspense>
               </div>
@@ -69,7 +67,7 @@ export default function HomePage() {
                   ['Orçamentos', 'Disponível em planos Pro e Premium com inbox no painel.'],
                 ].map(([title, text]) => (
                   <div key={title} className="rounded-3xl border border-white/8 bg-white/4 p-4">
-                    <div className="font-bold text-white">{title}</div>
+                    <div className="font-semibold text-white">{title}</div>
                     <div className="mt-2 text-sm leading-6 text-slate-400">{text}</div>
                   </div>
                 ))}
@@ -82,8 +80,8 @@ export default function HomePage() {
       <section className="container-app mt-24">
         <SectionHeader
           eyebrow="Por que converte"
-          title="Uma vitrine profissional que gera mais confiança e mais ação."
-          description="Cada página do AchaFrio foi pensada para ajudar o visitante a tomar decisão mais rápido: prova social, destaque visual, contato claro e CTA em todos os pontos importantes."
+          title="Uma vitrine profissional pensada para gerar confiança e ação."
+          description="Cada página do AchaFrio foi revista para reduzir ruído visual, organizar melhor a informação e deixar os CTAs mais claros."
           align="center"
         />
 
@@ -112,7 +110,7 @@ export default function HomePage() {
           ].map((item) => (
             <Surface key={item.title} className="card-hover">
               <item.icon className="h-8 w-8 text-cyan-200" />
-              <div className="mt-5 text-lg font-black text-white">{item.title}</div>
+              <div className="mt-5 text-lg font-semibold text-white">{item.title}</div>
               <p className="mt-3 text-sm leading-7 text-slate-400">{item.text}</p>
             </Surface>
           ))}
@@ -123,8 +121,8 @@ export default function HomePage() {
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
           <SectionHeader
             eyebrow="Como funciona"
-            title="O fluxo foi desenhado para o negócio vender."
-            description="Da busca até o contato: tudo foi estruturado para aumentar confiança, facilitar a escolha e incentivar o upgrade de plano."
+            title="O fluxo foi organizado para o negócio vender com menos fricção."
+            description="Da busca até o contato, a navegação ficou mais limpa e mais objetiva para o visitante decidir rápido."
           />
 
           <div className="grid gap-4">
@@ -135,7 +133,7 @@ export default function HomePage() {
               ['4. O plano pago ganha mais resultado', 'Mais destaque, mais informações visíveis, mais cidades e mais chances de contato.'],
             ].map(([title, text]) => (
               <Surface key={title}>
-                <div className="text-lg font-black text-white">{title}</div>
+                <div className="text-lg font-semibold text-white">{title}</div>
                 <p className="mt-3 text-sm leading-7 text-slate-400">{text}</p>
               </Surface>
             ))}
@@ -159,9 +157,9 @@ export default function HomePage() {
         <Surface className="overflow-hidden">
           <div className="grid items-center gap-8 lg:grid-cols-[1fr_auto]">
             <div>
-              <div className="text-sm font-black uppercase tracking-[0.2em] text-cyan-200">CTA final</div>
-              <h2 className="mt-4 text-3xl font-black leading-tight text-white md:text-5xl">
-                Quer lotar seu perfil de confiança e transformar visitas em contatos?
+              <div className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-200">CTA final</div>
+              <h2 className="mt-4 text-3xl font-semibold leading-tight text-white md:text-5xl">
+                Quer transformar visitas em contatos com uma vitrine profissional?
               </h2>
               <p className="mt-4 max-w-2xl text-base leading-8 text-slate-300">
                 Cadastre seu serviço, libere seu contato, receba avaliações e gere mais orçamento com um perfil profissional no AchaFrio.
