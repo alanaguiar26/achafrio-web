@@ -21,16 +21,16 @@ export function SearchForm() {
   }
 
   return (
-    <form onSubmit={submit} className="glass grid gap-3 rounded-[28px] border p-3 md:grid-cols-[1.35fr_0.62fr_1fr_auto] md:gap-2">
-      <div className="flex items-center rounded-[18px] border border-white/8 bg-slate-950/40 px-4">
-        <MapPin className="h-4 w-4 text-cyan-200/80" />
-        <input className="form-field border-0 bg-transparent px-3 shadow-none focus:shadow-none" placeholder="Cidade ou região" value={city} onChange={(event) => setCity(event.target.value)} />
-      </div>
+    <form onSubmit={submit} className="grid gap-3 rounded-[30px] border border-white/10 bg-slate-950/36 p-3 md:grid-cols-[minmax(0,1.2fr)_110px_minmax(0,1fr)_170px] md:items-center md:gap-3 md:p-3.5">
+      <label className="flex min-w-0 items-center gap-3 rounded-[20px] border border-white/8 bg-white/[0.04] px-4">
+        <MapPin className="h-4 w-4 shrink-0 text-cyan-200/80" />
+        <input className="form-field min-w-0 border-0 bg-transparent px-0 shadow-none focus:shadow-none" placeholder="Cidade ou região" value={city} onChange={(event) => setCity(event.target.value)} />
+      </label>
       <input className="form-field" placeholder="UF" value={state} onChange={(event) => setState(event.target.value.toUpperCase())} maxLength={2} />
-      <div className="flex items-center rounded-[18px] border border-white/8 bg-slate-950/40 px-4">
-        <Snowflake className="h-4 w-4 text-violet-200/80" />
-        <input className="form-field border-0 bg-transparent px-3 shadow-none focus:shadow-none" placeholder="Especialidade" value={specialty} onChange={(event) => setSpecialty(event.target.value)} />
-      </div>
+      <label className="flex min-w-0 items-center gap-3 rounded-[20px] border border-white/8 bg-white/[0.04] px-4">
+        <Snowflake className="h-4 w-4 shrink-0 text-violet-200/80" />
+        <input className="form-field min-w-0 border-0 bg-transparent px-0 shadow-none focus:shadow-none" placeholder="Especialidade" value={specialty} onChange={(event) => setSpecialty(event.target.value)} />
+      </label>
       <button type="submit" className="btn-primary cursor-pointer px-5"><Search className="h-4 w-4" />Encontrar</button>
     </form>
   )

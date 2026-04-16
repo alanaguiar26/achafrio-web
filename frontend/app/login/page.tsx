@@ -7,7 +7,7 @@ import { ArrowRight, LockKeyhole, Mail, ShieldCheck, Sparkles, Zap } from 'lucid
 import { apiClient, setAccessToken } from '@/lib/client-auth'
 
 const bullets = [
-  { text: 'Atualize dados, fotos, cidades e especialidades sem depender de plugin externo.', icon: ShieldCheck },
+  { text: 'Atualize dados, fotos, cidades e especialidades sem depender de plugins aleatórios.', icon: ShieldCheck },
   { text: 'Acompanhe assinatura, reputação e oportunidades dentro do mesmo painel.', icon: Sparkles },
   { text: 'Receba avisos e leads por fluxos transacionais com n8n e Evolution.', icon: Zap },
 ]
@@ -40,10 +40,10 @@ export default function LoginPage() {
 
   return (
     <div className="container-app py-12 md:py-14">
-      <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.94fr_1.06fr]">
-        <div className="glass rounded-[34px] border p-7 md:p-10">
+      <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.92fr_1.08fr]">
+        <div className="glass tone-lilac rounded-[34px] border p-7 md:p-10">
           <div className="eyebrow">Entrar</div>
-          <h1 className="section-title-sm mt-5 max-w-xl">Volte para o seu painel e continue melhorando sua vitrine profissional.</h1>
+          <h1 className="section-title-sm mt-5 max-w-[13ch]">Volte para o seu painel e continue melhorando sua vitrine profissional.</h1>
           <p className="section-subtitle mt-5">
             O acesso coloca você de volta no centro da operação: perfil, reputação, orçamentos, assinatura e próximos passos do crescimento.
           </p>

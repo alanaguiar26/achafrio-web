@@ -12,11 +12,11 @@ export default async function BuscarPage({ searchParams }: { searchParams: Promi
 
   return (
     <div className="container-app py-12 md:py-14">
-      <Surface className="bg-gradient-to-r from-white/[0.02] via-cyan-500/[0.03] to-violet-500/[0.05] p-6 md:p-8">
+      <Surface className="bg-gradient-to-r from-cyan-500/[0.05] via-white/[0.03] to-violet-500/[0.06] p-6 md:p-8">
         <SectionHeader
           eyebrow="Busca pública"
           title="Encontre profissionais por cidade, estado e especialidade."
-          description="A busca prioriza presença comercial, verificação e reputação, mas mantém a navegação objetiva para o cliente escolher rápido e bem."
+          description="A navegação ficou mais enxuta e a busca já respeita reputação, verificação e prioridade comercial na ordenação."
           compact
         />
         <div className="mt-7">
@@ -24,16 +24,16 @@ export default async function BuscarPage({ searchParams }: { searchParams: Promi
         </div>
       </Surface>
 
-      <div className="mt-8 grid gap-6 lg:grid-cols-[300px_1fr]">
-        <Surface className="h-fit p-5 md:sticky md:top-24 md:p-6">
+      <div className="mt-8 grid gap-6 lg:grid-cols-[280px_1fr]">
+        <Surface className="tone-peach h-fit p-5 md:sticky md:top-24 md:p-6">
           <div className="eyebrow">Resumo</div>
           <div className="mt-4 text-5xl font-black tracking-[-0.05em] text-white">{response.total}</div>
-          <div className="mt-2 text-sm text-slate-400">perfil(is) encontrado(s)</div>
+          <div className="mt-2 text-sm text-slate-300">perfil(is) encontrado(s)</div>
 
           <div className="mt-6 grid gap-3 text-sm leading-7 text-slate-300">
-            <div className="surface-inset p-4">Pagos e verificados aparecem primeiro.</div>
-            <div className="surface-inset p-4">Perfis FREE ficam públicos, mas com contato oculto.</div>
-            <div className="surface-inset p-4">Orçamentos entram em cena apenas em PRO e PREMIUM.</div>
+            <div className="surface-inset p-4">Perfis pagos e verificados aparecem primeiro.</div>
+            <div className="surface-inset p-4">FREE continua público, mas com contato oculto.</div>
+            <div className="surface-inset p-4">PRO e PREMIUM destravam orçamento e mais destaque.</div>
           </div>
         </Surface>
 

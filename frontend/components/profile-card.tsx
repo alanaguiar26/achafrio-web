@@ -11,13 +11,13 @@ function planTone(plan: PublicProfile['plan']) {
     FREE: 'bg-white/5 text-slate-200',
     STARTER: 'bg-cyan-500/12 text-cyan-100',
     PRO: 'bg-violet-500/14 text-violet-100',
-    PREMIUM: 'bg-emerald-500/14 text-emerald-100',
+    PREMIUM: 'bg-amber-400/14 text-amber-100',
   }[plan]
 }
 
 export function ProfileCard({ profile }: { profile: PublicProfile }) {
   return (
-    <div className="glass card-hover rounded-[32px] border p-5 md:p-6">
+    <div className="glass card-hover rounded-[32px] border bg-gradient-to-br from-white/[0.03] via-transparent to-cyan-500/[0.04] p-5 md:p-6">
       <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
         <div className="flex gap-4">
           <div className="h-18 w-18 shrink-0 overflow-hidden rounded-[22px] border border-white/10 bg-slate-900">
@@ -48,8 +48,8 @@ export function ProfileCard({ profile }: { profile: PublicProfile }) {
         </Link>
       </div>
 
-      <p className="mt-5 text-sm leading-7 text-slate-300">
-        {profile.bio || 'Perfil profissional com atendimento especializado, foco em agilidade e presença comercial mais confiável.'}
+      <p className="mt-5 max-w-3xl text-sm leading-7 text-slate-300">
+        {profile.bio || 'Perfil profissional com atendimento especializado, foco em agilidade, confiança e presença comercial mais forte.'}
       </p>
 
       <div className="mt-5 flex flex-wrap gap-2">

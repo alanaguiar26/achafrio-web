@@ -1,14 +1,14 @@
 'use client'
 
-import { useState } from 'react'
 import Link from 'next/link'
-import { ArrowRight, BadgeCheck, LayoutGrid, ShieldCheck, Zap } from 'lucide-react'
+import { ArrowRight, BadgeCheck, Building2, LayoutGrid, ShieldCheck, Sparkles } from 'lucide-react'
+import { useState } from 'react'
 import { apiClient } from '@/lib/client-auth'
 
 const advantages = [
-  { title: 'Perfil mais confiável', text: 'Verificação, avaliações moderadas e página pública organizada para transmitir mais valor.', icon: ShieldCheck },
-  { title: 'Mais destaque comercial', text: 'Planos pagos liberam contato, ranking e recursos para quem quer crescer de verdade.', icon: Zap },
-  { title: 'Painel simples de usar', text: 'Tudo centralizado para editar perfil, reputação, orçamentos e assinatura.', icon: LayoutGrid },
+  { title: 'Mais confiança', text: 'Verificação, avaliações moderadas e página pública com melhor leitura visual.', icon: ShieldCheck },
+  { title: 'Mais destaque', text: 'Planos liberam contato, ranking comercial e recursos premium para vender serviço.', icon: Sparkles },
+  { title: 'Mais praticidade', text: 'Painel centralizado para editar perfil, pedir avaliações e receber leads.', icon: LayoutGrid },
 ]
 
 export default function CadastroPage() {
@@ -36,12 +36,12 @@ export default function CadastroPage() {
 
   return (
     <div className="container-app py-12 md:py-14">
-      <div className="grid gap-8 lg:grid-cols-[0.92fr_1.08fr]">
-        <div className="glass rounded-[34px] border p-7 md:p-10">
+      <div className="grid gap-8 lg:grid-cols-[0.88fr_1.12fr]">
+        <div className="glass tone-peach rounded-[34px] border p-7 md:p-10">
           <div className="eyebrow">Cadastrar serviço</div>
-          <h1 className="section-title-sm mt-5 max-w-xl">Crie um perfil com cara de empresa séria, mesmo começando no plano gratuito.</h1>
+          <h1 className="section-title-sm mt-5 max-w-[12ch]">Crie um perfil que pareça profissional, confiável e pronto para vender.</h1>
           <p className="section-subtitle mt-5">
-            O cadastro já deixa sua presença mais pronta para SEO, prova social, geração de contatos e crescimento de plano sem aquela aparência genérica de diretório improvisado.
+            O cadastro já nasce preparado para SEO, prova social, upgrade de plano e geração de contatos em um layout mais sólido e menos genérico.
           </p>
 
           <div className="mt-8 grid gap-4">
@@ -49,7 +49,7 @@ export default function CadastroPage() {
               <div key={item.title} className="surface-inset p-5">
                 <item.icon className="h-5 w-5 text-cyan-200" />
                 <div className="mt-4 text-lg font-semibold text-white">{item.title}</div>
-                <div className="mt-2 text-sm leading-6 text-slate-400">{item.text}</div>
+                <div className="mt-2 text-sm leading-7 text-slate-300">{item.text}</div>
               </div>
             ))}
           </div>
@@ -57,16 +57,16 @@ export default function CadastroPage() {
 
         <div className="glass rounded-[34px] border p-7 md:p-10">
           <div className="text-3xl font-black tracking-[-0.04em] text-white">Abra sua conta</div>
-          <p className="mt-3 text-sm leading-7 text-slate-400">Preencha o básico agora. O restante você ajusta com calma no painel.</p>
+          <p className="mt-3 text-sm leading-7 text-slate-400">Complete os dados iniciais. Depois você ajusta tudo no painel.</p>
 
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
             <button type="button" onClick={() => setType('TECNICO')} className={`rounded-[22px] border p-4 text-left transition ${type === 'TECNICO' ? 'border-cyan-300/25 bg-cyan-500/10' : 'border-white/8 bg-white/4'}`}>
               <div className="font-semibold text-white">Técnico autônomo</div>
-              <div className="mt-2 text-sm text-slate-400">Perfil individual com foco em serviço, contato e reputação.</div>
+              <div className="mt-2 text-sm text-slate-400">Perfil individual com foco em contato, reputação e área atendida.</div>
             </button>
             <button type="button" onClick={() => setType('EMPRESA')} className={`rounded-[22px] border p-4 text-left transition ${type === 'EMPRESA' ? 'border-violet-300/25 bg-violet-500/10' : 'border-white/8 bg-white/4'}`}>
               <div className="font-semibold text-white">Empresa</div>
-              <div className="mt-2 text-sm text-slate-400">Página institucional com mais presença, portfólio e percepção de valor.</div>
+              <div className="mt-2 text-sm text-slate-400">Página institucional com mais presença, portfólio e visibilidade.</div>
             </button>
           </div>
 

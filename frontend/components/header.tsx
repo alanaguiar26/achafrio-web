@@ -22,23 +22,21 @@ export function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/6 bg-slate-950/72 backdrop-blur-xl">
-      <div className="container-app flex min-h-[78px] items-center justify-between gap-4">
+    <header className="sticky top-0 z-50 border-b border-white/6 bg-slate-950/58 backdrop-blur-2xl">
+      <div className="container-app flex min-h-[76px] items-center justify-between gap-4">
         <Link href="/" className="flex items-center gap-3">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-gradient-to-br from-cyan-400/20 via-sky-400/12 to-violet-400/18 text-cyan-100 shadow-[0_14px_40px_rgba(35,188,255,0.16)]">
+          <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-gradient-to-br from-cyan-400/24 via-violet-400/14 to-emerald-400/18 text-cyan-100 shadow-[0_14px_36px_rgba(67,164,255,0.18)]">
             <Snowflake className="h-5 w-5" />
           </div>
           <div>
-            <div className="text-[1.34rem] font-black tracking-[-0.03em] text-white">AchaFrio</div>
-            <div className="text-[0.77rem] text-slate-400">Profissionais de climatização com presença premium</div>
+            <div className="text-[1.24rem] font-black tracking-[-0.03em] text-white">AchaFrio</div>
+            <div className="text-[0.74rem] text-slate-400">Climatização e refrigeração em todo o Brasil</div>
           </div>
         </Link>
 
         <nav className="hidden items-center gap-6 lg:flex">
           {publicLinks.map((item) => (
-            <Link key={item.href} href={item.href} className="nav-link">
-              {item.label}
-            </Link>
+            <Link key={item.href} href={item.href} className="nav-link">{item.label}</Link>
           ))}
           {loading ? (
             <div className="text-sm text-slate-500">Carregando…</div>
@@ -57,10 +55,10 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2 lg:hidden">
-          <Link href="/buscar" className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/4 text-slate-100">
+          <Link href="/buscar" className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-100">
             <Search className="h-4 w-4" />
           </Link>
-          <button onClick={() => setOpen((prev) => !prev)} className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/4 text-slate-100">
+          <button onClick={() => setOpen((prev) => !prev)} className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-100">
             {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
           </button>
         </div>
