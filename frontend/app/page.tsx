@@ -2,8 +2,11 @@ import Link from 'next/link'
 import { Suspense } from 'react'
 import { ArrowRight, BadgeCheck, Crown, MapPinned, MessageCircleMore, Search, ShieldCheck, Sparkles, Star, WalletCards } from 'lucide-react'
 import { PricingGrid } from '@/components/pricing'
+import { getProfiles } from '@/lib/api'
 import { SearchForm } from '@/components/search-form'
-import { SectionHeader, Surface } from '@/components/ui'
+import { HomeListingFilters } from '@/components/home-listing-filters'
+import { ProfileCard } from '@/components/profile-card'
+import { EmptyState, SectionHeader, Surface } from '@/components/ui'
 
 const trustLogos = ['Perfis verificados', 'Avaliações moderadas', 'Busca por cidade e UF', 'Leads no painel']
 
@@ -46,7 +49,25 @@ const journey = [
   },
 ]
 
-export default function HomePage() {
+export default async function HomePage({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) {
+  const params = await searchParams
+  const homeCity = params.homeCity
+  const homeState = params.homeState
+  const homeSpecialty = params.homeSpecialty
+  const featuredResponse = await getProfiles({
+    city: homeCity,
+    state: homeState,
+    specialty: homeSpecialty,
+    limit: '4',
+    page: '1',
+  }).catch(() => ({ page: 1, limit: 4, total: 0, data: [] }))
+
+  const browseQuery = new URLSearchParams()
+  if (homeCity) browseQuery.set('city', homeCity)
+  if (homeState) browseQuery.set('state', homeState)
+  if (homeSpecialty) browseQuery.set('specialty', homeSpecialty)
+  const browseHref = browseQuery.toString() ? `/buscar?${browseQuery.toString()}` : '/buscar'
+
   return (
     <>
       <section className="container-app pt-8 md:pt-14">
@@ -144,6 +165,53 @@ export default function HomePage() {
             {trustLogos.map((item) => (
               <span key={item} className="meta-chip"><Sparkles className="h-4 w-4" />{item}</span>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="home-destaques" className="container-app mt-18 md:mt-20">
+        <div className="home-listing-shell">
+          <div className="home-listing-header">
+            <div>
+              <div className="eyebrow">Destaques da busca</div>
+              <h2 className="section-title-sm mt-4 max-w-3xl">Veja perfis reais já ordenados pelas regras comerciais da plataforma.</h2>
+              <p className="section-subtitle mt-4 max-w-3xl">A listagem abaixo já respeita a lógica de destaque do AchaFrio: planos mais altos aparecem antes, depois entram verificação, reputação e qualidade geral do perfil. O FREE continua público, mas fica abaixo dos pagos e sem contato liberado.</p>
+            </div>
+            <div className="home-listing-summary">
+              <div className="listing-summary-card tone-sky">
+                <div className="listing-summary-value">{featuredResponse.total}</div>
+                <div className="listing-summary-label">perfil(is) para este filtro</div>
+              </div>
+              <div className="listing-summary-note">
+                PREMIUM, PRO e STARTER têm prioridade de visibilidade. Dentro do mesmo plano, perfis verificados e melhor reputação sobem primeiro.
+              </div>
+            </div>
+          </div>
+
+          <Surface className="tone-mint p-5 md:p-6">
+            <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+              <div>
+                <div className="text-lg font-semibold text-white">Filtre os destaques sem sair da home</div>
+                <p className="mt-2 max-w-2xl text-sm leading-7 text-slate-300">Busque por cidade, UF e especialidade. Quando quiser explorar tudo, a busca completa continua disponível.</p>
+              </div>
+              <Link href={browseHref} className="btn-secondary text-sm">Ver busca completa</Link>
+            </div>
+            <div className="mt-5">
+              <HomeListingFilters />
+            </div>
+          </Surface>
+
+          <div className="home-listing-grid mt-6">
+            {featuredResponse.data.length ? (
+              featuredResponse.data.map((profile) => <ProfileCard key={profile.id} profile={profile} />)
+            ) : (
+              <EmptyState
+                className="lg:col-span-2"
+                title="Nenhum perfil apareceu com esse filtro."
+                description="Experimente buscar só por cidade ou apenas pela especialidade. A home mostra um recorte; a página de busca completa continua disponível para aprofundar."
+                action={<Link href="/buscar" className="btn-secondary text-sm">Abrir busca completa</Link>}
+              />
+            )}
           </div>
         </div>
       </section>

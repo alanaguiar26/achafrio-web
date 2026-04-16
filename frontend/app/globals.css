@@ -549,3 +549,134 @@ img { max-width: 100%; display: block; }
     grid-template-columns: 1fr;
   }
 }
+
+
+.home-listing-shell {
+  display: grid;
+  gap: 1.5rem;
+}
+.home-listing-header {
+  display: grid;
+  gap: 1.25rem;
+}
+.home-listing-summary {
+  display: grid;
+  gap: 0.9rem;
+  align-content: start;
+}
+.listing-summary-card {
+  border-radius: 28px;
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 1.15rem 1.2rem;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.025));
+}
+.listing-summary-value {
+  font-size: clamp(2rem, 3vw, 2.75rem);
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  color: white;
+}
+.listing-summary-label {
+  margin-top: 0.4rem;
+  color: var(--muted-strong);
+  font-size: 0.9rem;
+}
+.listing-summary-note {
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.035);
+  padding: 1rem 1.05rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.75;
+}
+.home-listing-grid {
+  display: grid;
+  gap: 1rem;
+}
+.home-listing-filters {
+  display: grid;
+  gap: 0.9rem;
+}
+.listing-filter-field {
+  display: flex;
+  gap: 0.85rem;
+  align-items: center;
+  min-height: 74px;
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,0.09);
+  background: rgba(5, 12, 26, 0.62);
+  padding: 0.95rem 1rem;
+  transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+.listing-filter-field:focus-within {
+  border-color: rgba(105, 208, 255, 0.52);
+  box-shadow: 0 0 0 3px rgba(63, 180, 255, 0.10);
+}
+.listing-filter-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  background: rgba(63, 180, 255, 0.12);
+  color: #9fdbff;
+  flex-shrink: 0;
+}
+.listing-filter-icon.is-violet {
+  background: rgba(125, 109, 255, 0.13);
+  color: #c7bfff;
+}
+.listing-filter-icon.is-soft {
+  background: rgba(255,255,255,0.08);
+  color: #dbe8f6;
+}
+.listing-filter-label {
+  display: block;
+  margin-bottom: 0.22rem;
+  color: #cbe7ff;
+  font-size: 0.73rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.listing-filter-input {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: white;
+  outline: none;
+  font-size: 1rem;
+}
+.listing-filter-input::placeholder { color: #7f93ab; }
+.home-listing-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+.home-listing-submit {
+  min-width: min(100%, 230px);
+}
+@media (min-width: 900px) {
+  .home-listing-header {
+    grid-template-columns: minmax(0, 1fr) 320px;
+    align-items: end;
+  }
+  .home-listing-filters {
+    grid-template-columns: minmax(0, 1.2fr) 150px minmax(0, 1fr) auto;
+    align-items: stretch;
+  }
+  .listing-filter-field-lg { min-width: 0; }
+  .home-listing-actions {
+    justify-content: flex-end;
+    align-self: stretch;
+  }
+}
+@media (min-width: 1024px) {
+  .home-listing-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
