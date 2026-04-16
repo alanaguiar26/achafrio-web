@@ -9,28 +9,28 @@ export default function PlanosPage() {
     <div className="container-app py-14">
       <SectionHeader
         eyebrow="Planos AchaFrio"
-        title="Escolha o plano ideal para sua visibilidade e geração de contatos."
-        description="Os planos foram pensados para aumentar exposição, confiança e conversão. O FREE coloca seu perfil no ar. Os pagos ajudam você a aparecer acima, liberar contato e gerar mais oportunidades."
+        title="Escolha o nível de visibilidade que faz sentido para o seu momento."
+        description="O plano gratuito coloca seu perfil no ar. Os planos pagos destravam contato, prova social, ranking e geração de leads."
       />
 
-      <div className="mt-10"><PricingGrid /></div>
+      <div className="mt-10">
+        <PricingGrid />
+      </div>
 
-      <div className="mt-12 grid gap-6 md:grid-cols-2">
+      <div className="mt-8 grid gap-6 lg:grid-cols-2">
         <Surface>
-          <div className="text-lg font-black text-white">O que muda na prática?</div>
-          <ul className="mt-4 space-y-3 text-sm leading-7 text-slate-300">
-            <li>• FREE não exibe WhatsApp, telefone nem site no perfil público.</li>
-            <li>• STARTER libera contato, avaliações e verificação.</li>
-            <li>• PRO libera orçamentos com inbox no painel.</li>
-            <li>• PREMIUM ganha máxima prioridade comercial e destaque visual.</li>
-          </ul>
+          <div className="text-xl font-semibold text-white">O que muda na prática?</div>
+          <div className="mt-4 grid gap-3 text-sm leading-7 text-slate-300">
+            <div>• FREE deixa o perfil público, mas mantém contato oculto.</div>
+            <div>• STARTER libera contato, avaliações e mais credibilidade.</div>
+            <div>• PRO ativa orçamentos e melhora presença comercial.</div>
+            <div>• PREMIUM entrega prioridade máxima e mais destaque visual.</div>
+          </div>
         </Surface>
 
         <Surface>
-          <div className="text-lg font-black text-white">Pronto para subir?</div>
-          <p className="mt-4 text-sm leading-7 text-slate-300">
-            Cadastre seu perfil agora e faça upgrade quando quiser pelo painel. O backend já está preparado para assinaturas recorrentes via Asaas e sincronização automática do plano.
-          </p>
+          <div className="text-xl font-semibold text-white">Quando assinar?</div>
+          <p className="mt-4 text-sm leading-7 text-slate-300">Quando você já estiver com perfil básico montado e quiser transformar tráfego em contato. A estrutura atual suporta cobrança recorrente e sincronização via Asaas, mas ainda vale validar tudo em sandbox antes de vender de verdade.</p>
           <Link href="/cadastro" className="btn-primary mt-6">Criar minha conta</Link>
         </Surface>
       </div>

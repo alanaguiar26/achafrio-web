@@ -1,151 +1,123 @@
 import Link from 'next/link'
 import { Suspense } from 'react'
-import { ArrowRight, BadgeCheck, Building2, MessageCircle, Quote, Search, ShieldCheck, Star } from 'lucide-react'
+import { ArrowRight, BadgeCheck, Building2, CheckCircle2, Crown, MessageCircleMore, Search, ShieldCheck, Sparkles } from 'lucide-react'
 import { PricingGrid } from '@/components/pricing'
 import { SearchForm } from '@/components/search-form'
 import { SectionHeader, Stat, Surface } from '@/components/ui'
 
+const benefits = [
+  { title: 'Perfis mais confiáveis', text: 'Verificação, avaliações moderadas e estrutura pensada para gerar contato.', icon: ShieldCheck },
+  { title: 'Mais visibilidade paga', text: 'Planos destacados sobem na busca e mostram mais informações públicas.', icon: Crown },
+  { title: 'Leads no painel', text: 'Orçamentos entram no inbox e podem acionar n8n + Evolution.', icon: MessageCircleMore },
+]
+
 export default function HomePage() {
   return (
     <>
-      <section className="container-app pt-12 md:pt-16">
-        <div className="grid items-center gap-8 lg:grid-cols-[1.18fr_0.82fr]">
-          <div>
-            <div className="mb-5 inline-flex rounded-full border border-cyan-300/12 bg-cyan-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200">
-              Plataforma nacional para HVAC & refrigeração
-            </div>
-            <h1 className="section-title max-w-4xl">
-              Encontre profissionais de <span className="gradient-text">ar-condicionado e refrigeração</span> com mais confiança.
-            </h1>
-            <p className="section-subtitle mt-6 max-w-2xl">
-              O AchaFrio conecta clientes a técnicos autônomos e empresas em todo o Brasil com perfis verificados,
-              avaliações reais e busca por cidade para transformar visitas em contato mais rápido.
-            </p>
+      <section className="container-app pt-10 md:pt-16">
+        <Surface className="hero-surface overflow-hidden p-7 md:p-10">
+          <div className="grid items-start gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:gap-10">
+            <div>
+              <div className="eyebrow">Marketplace nacional para climatização</div>
+              <h1 className="section-title mt-5 max-w-4xl">
+                Encontre técnicos e empresas de <span className="gradient-text">ar-condicionado e refrigeração</span> sem perder tempo.
+              </h1>
+              <p className="section-subtitle mt-5 max-w-2xl">
+                Busca simples, perfis mais confiáveis, contato mais direto e estrutura comercial para quem quer vender serviço de verdade.
+              </p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/buscar" className="btn-primary">
-                <Search className="h-4 w-4" />
-                Buscar profissionais
-              </Link>
-              <Link href="/cadastro" className="btn-secondary">
-                <Building2 className="h-4 w-4" />
-                Cadastrar meu serviço
-              </Link>
-            </div>
-
-            <div className="mt-10 grid gap-4 sm:grid-cols-3">
-              <Stat value="4x" label="Mais confiança" hint="Com verificação e avaliações moderadas" />
-              <Stat value="PRO+" label="Receba leads" hint="Inbox no painel + notificação" />
-              <Stat value="SEO" label="Páginas indexáveis" hint="Busca por cidade, UF e serviço" />
-            </div>
-          </div>
-
-          <Surface className="overflow-hidden">
-            <div className="rounded-[26px] border border-cyan-200/10 bg-slate-950/30 p-5">
-              <div className="flex items-center justify-between gap-4">
-                <div>
-                  <div className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200">Busca inteligente</div>
-                  <div className="mt-2 text-2xl font-semibold text-white">Procure por cidade, UF e especialidade.</div>
-                </div>
-                <div className="badge bg-emerald-500/12 text-emerald-300">
-                  <BadgeCheck className="h-4 w-4" />
-                  Perfis verificados
-                </div>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <Link href="/buscar" className="btn-primary"><Search className="h-4 w-4" />Buscar profissionais</Link>
+                <Link href="/cadastro" className="btn-secondary"><Building2 className="h-4 w-4" />Cadastrar meu perfil</Link>
               </div>
 
-              <div className="mt-6">
-                <Suspense fallback={<div className="glass rounded-[28px] border p-5 text-sm text-slate-400">Carregando busca…</div>}>
-                  <SearchForm />
-                </Suspense>
+              <div className="mt-8 soft-grid-3">
+                <Stat value="Busca" label="Rápida e objetiva" hint="Cidade, UF e especialidade em poucos segundos" />
+                <Stat value="Planos" label="Com ranking comercial" hint="Páginas pagas sobem primeiro e convertem mais" />
+                <Stat value="Painel" label="Para leads e reputação" hint="Avaliações, verificação e orçamentos no mesmo lugar" />
               </div>
+            </div>
 
-              <div className="mt-6 grid gap-4 md:grid-cols-2">
-                {[
-                  ['Mais destaque', 'Planos pagos aparecem acima e convertem melhor.'],
-                  ['Contato direto', 'WhatsApp, telefone e site liberados para planos pagos.'],
-                  ['Avaliações reais', 'Links únicos com expiração e moderação pelo admin.'],
-                  ['Orçamentos', 'Disponível em planos Pro e Premium com inbox no painel.'],
-                ].map(([title, text]) => (
-                  <div key={title} className="rounded-3xl border border-white/8 bg-white/4 p-4">
-                    <div className="font-semibold text-white">{title}</div>
-                    <div className="mt-2 text-sm leading-6 text-slate-400">{text}</div>
+            <div className="grid gap-4">
+              <Surface className="bg-white/3">
+                <div className="flex items-center justify-between gap-4">
+                  <div>
+                    <div className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-200">Busca pública</div>
+                    <div className="mt-2 text-2xl font-semibold text-white">Ache mais rápido.</div>
                   </div>
+                  <div className="badge bg-emerald-500/12 text-emerald-300"><BadgeCheck className="h-4 w-4" />Perfis verificados</div>
+                </div>
+                <div className="mt-5">
+                  <Suspense fallback={<div className="rounded-[24px] border border-white/10 bg-white/3 p-4 text-sm text-slate-400">Carregando busca…</div>}>
+                    <SearchForm />
+                  </Suspense>
+                </div>
+              </Surface>
+
+              <div className="soft-grid md:grid-cols-3">
+                {benefits.map((item) => (
+                  <Surface key={item.title} className="card-hover p-5">
+                    <item.icon className="h-5 w-5 text-cyan-200" />
+                    <div className="mt-4 text-lg font-semibold text-white">{item.title}</div>
+                    <div className="mt-2 text-sm leading-6 text-slate-400">{item.text}</div>
+                  </Surface>
                 ))}
               </div>
             </div>
-          </Surface>
-        </div>
+          </div>
+        </Surface>
       </section>
 
-      <section className="container-app mt-24">
+      <section className="container-app mt-20">
         <SectionHeader
-          eyebrow="Por que converte"
-          title="Uma vitrine profissional pensada para gerar confiança e ação."
-          description="Cada página do AchaFrio foi revista para reduzir ruído visual, organizar melhor a informação e deixar os CTAs mais claros."
+          eyebrow="Por que funciona"
+          title="Menos ruído visual. Mais confiança. Mais ação."
+          description="O AchaFrio foi reorganizado para ficar mais claro para o cliente e mais útil para o profissional."
           align="center"
         />
-
-        <div className="mt-10 grid gap-6 lg:grid-cols-4">
+        <div className="mt-10 soft-grid-4">
           {[
-            {
-              icon: ShieldCheck,
-              title: 'Verificação de perfil',
-              text: 'Documento e selfie opcional com aprovação no admin para gerar mais credibilidade.',
-            },
-            {
-              icon: Star,
-              title: 'Avaliações autênticas',
-              text: 'Links únicos, expiração em 7 dias e moderação para reduzir fraude e spam.',
-            },
-            {
-              icon: MessageCircle,
-              title: 'Contato e leads',
-              text: 'Contato direto nos planos pagos e orçamento no painel para Pro e Premium.',
-            },
-            {
-              icon: Quote,
-              title: 'Busca com ranking comercial',
-              text: 'Ordenação por plano, verificação, reputação e popularidade para priorizar quem investe.',
-            },
-          ].map((item) => (
-            <Surface key={item.title} className="card-hover">
-              <item.icon className="h-8 w-8 text-cyan-200" />
-              <div className="mt-5 text-lg font-semibold text-white">{item.title}</div>
-              <p className="mt-3 text-sm leading-7 text-slate-400">{item.text}</p>
+            ['Busca enxuta', 'Sem excesso de informação logo de cara.'],
+            ['Perfil comercial', 'Fotos, selo, reputação e CTAs em destaque.'],
+            ['Leads organizados', 'Painel com orçamentos, avaliações e assinatura.'],
+            ['Monetização clara', 'Planos sobem na busca e liberam mais recursos.'],
+          ].map(([title, text]) => (
+            <Surface key={title} className="card-hover p-5">
+              <div className="text-lg font-semibold text-white">{title}</div>
+              <div className="mt-2 text-sm leading-6 text-slate-400">{text}</div>
             </Surface>
           ))}
         </div>
       </section>
 
-      <section className="container-app mt-24">
-        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+      <section className="container-app mt-20">
+        <div className="grid gap-6 lg:grid-cols-[0.88fr_1.12fr]">
           <SectionHeader
-            eyebrow="Como funciona"
-            title="O fluxo foi organizado para o negócio vender com menos fricção."
-            description="Da busca até o contato, a navegação ficou mais limpa e mais objetiva para o visitante decidir rápido."
+            eyebrow="Fluxo comercial"
+            title="O visitante chega mais rápido ao profissional certo."
+            description="Em vez de gritar informação na tela, a estrutura conduz o usuário até o contato ou orçamento."
           />
-
           <div className="grid gap-4">
             {[
-              ['1. Cliente busca por cidade, UF e especialidade', 'A plataforma prioriza perfis pagos, verificados e com reputação melhor.'],
-              ['2. O perfil convence com selo, fotos e avaliações', 'A página pública traz CTA forte para WhatsApp, telefone e orçamento.'],
-              ['3. O profissional recebe ação no painel', 'Orçamento cai no inbox e também pode gerar notificação via n8n + Evolution.'],
-              ['4. O plano pago ganha mais resultado', 'Mais destaque, mais informações visíveis, mais cidades e mais chances de contato.'],
+              ['1. Busca por cidade, UF e especialidade', 'A ordenação já prioriza plano, verificação e reputação.'],
+              ['2. Perfil convence', 'Página pública mostra foto, cidade atendida, especialidades e prova social.'],
+              ['3. Contato ou orçamento', 'WhatsApp, telefone e orçamento entram em cena conforme o plano.'],
+              ['4. Painel acompanha', 'O profissional acompanha assinatura, leads e próximos passos.'],
             ].map(([title, text]) => (
-              <Surface key={title}>
+              <Surface key={title} className="p-5 md:p-6">
                 <div className="text-lg font-semibold text-white">{title}</div>
-                <p className="mt-3 text-sm leading-7 text-slate-400">{text}</p>
+                <p className="mt-2 text-sm leading-6 text-slate-400">{text}</p>
               </Surface>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="container-app mt-24">
+      <section className="container-app mt-20">
         <SectionHeader
           eyebrow="Planos"
-          title="Monetização por visibilidade e recursos."
-          description="O FREE ajuda a encher a base. Os pagos destravam contato, reputação, ranking e geração de leads."
+          title="Visibilidade e recursos que fazem sentido para o negócio."
+          description="Do FREE ao PREMIUM, cada plano libera mais presença pública, mais prova social e mais chance de contato."
           align="center"
         />
         <div className="mt-10">
@@ -153,23 +125,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="container-app mt-24 pb-24">
-        <Surface className="overflow-hidden">
-          <div className="grid items-center gap-8 lg:grid-cols-[1fr_auto]">
+      <section className="container-app mt-20 pb-24">
+        <Surface className="overflow-hidden p-7 md:p-10">
+          <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
-              <div className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-200">CTA final</div>
-              <h2 className="mt-4 text-3xl font-semibold leading-tight text-white md:text-5xl">
-                Quer transformar visitas em contatos com uma vitrine profissional?
-              </h2>
-              <p className="mt-4 max-w-2xl text-base leading-8 text-slate-300">
-                Cadastre seu serviço, libere seu contato, receba avaliações e gere mais orçamento com um perfil profissional no AchaFrio.
-              </p>
+              <div className="eyebrow">Pronto para começar</div>
+              <h2 className="section-title mt-5 max-w-3xl">Monte um perfil mais sério, profissional e fácil de converter.</h2>
+              <p className="section-subtitle mt-4 max-w-2xl">Cadastre seu serviço, organize sua presença online e prepare o terreno para avaliações, verificação e geração de leads.</p>
             </div>
             <div className="flex flex-wrap gap-3">
-              <Link href="/cadastro" className="btn-primary">
-                Cadastrar meu perfil
-                <ArrowRight className="h-4 w-4" />
-              </Link>
+              <Link href="/cadastro" className="btn-primary">Criar meu perfil<ArrowRight className="h-4 w-4" /></Link>
               <Link href="/planos" className="btn-secondary">Ver planos</Link>
             </div>
           </div>

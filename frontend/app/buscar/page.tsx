@@ -14,28 +14,28 @@ export default async function BuscarPage({ searchParams }: { searchParams: Promi
       <SectionHeader
         eyebrow="Busca pública"
         title="Encontre profissionais por cidade, estado e especialidade."
-        description="Os resultados já priorizam plano, verificação e reputação, mas a navegação ficou mais limpa e objetiva para o cliente chegar mais rápido ao contato certo."
+        description="Resultados priorizam plano, verificação e reputação, sem poluir a tela com excesso de informação."
       />
 
       <div className="mt-8"><SearchForm /></div>
 
-      <div className="mt-8 grid gap-8 lg:grid-cols-[280px_1fr]">
-        <Surface>
+      <div className="mt-8 grid gap-8 lg:grid-cols-[260px_1fr]">
+        <Surface className="p-5 md:p-6">
           <div className="text-sm font-semibold uppercase tracking-[0.16em] text-cyan-200">Resumo</div>
-          <div className="mt-4 text-3xl font-semibold text-white">{response.total}</div>
-          <div className="text-sm text-slate-400">perfil(is) encontrado(s)</div>
-          <div className="mt-6 grid gap-3 text-sm text-slate-300">
-            <div>Pagos e verificados aparecem primeiro.</div>
-            <div>Perfis FREE ficam públicos, mas sem contato direto.</div>
-            <div>Orçamentos só aparecem em PRO e PREMIUM.</div>
+          <div className="mt-4 text-4xl font-extrabold text-white">{response.total}</div>
+          <div className="mt-1 text-sm text-slate-400">perfil(is) encontrado(s)</div>
+          <div className="mt-5 grid gap-2 text-sm leading-6 text-slate-300">
+            <div>• Perfis pagos e verificados aparecem primeiro.</div>
+            <div>• Perfis FREE ficam públicos, mas sem contato direto.</div>
+            <div>• Orçamentos só aparecem em PRO e PREMIUM.</div>
           </div>
         </Surface>
 
         <div className="grid gap-5">
           {response.data.length ? response.data.map((profile) => <ProfileCard key={profile.id} profile={profile} />) : (
-            <Surface>
-              <div className="text-xl font-semibold text-white">Nenhum perfil encontrado.</div>
-              <p className="mt-3 text-sm leading-7 text-slate-400">Ajuste os filtros, troque a cidade ou a especialidade e tente novamente.</p>
+            <Surface className="p-7 md:p-8">
+              <div className="text-2xl font-semibold text-white">Nenhum perfil encontrado.</div>
+              <p className="mt-3 max-w-xl text-sm leading-7 text-slate-400">Tente buscar só pela cidade, remover a especialidade ou testar uma UF diferente para ampliar os resultados.</p>
             </Surface>
           )}
         </div>
