@@ -1,51 +1,49 @@
 import Link from 'next/link'
 import { Suspense } from 'react'
-import { ArrowRight, BadgeCheck, Crown, MapPinned, MessageCircleMore, Search, ShieldCheck, Sparkles, Star, WalletCards } from 'lucide-react'
+import { ArrowRight, BadgeCheck, CheckCircle2, MessageCircleMore, Search, ShieldCheck, Sparkles, Star, Zap } from 'lucide-react'
 import { PricingGrid } from '@/components/pricing'
 import { getProfiles } from '@/lib/api'
 import { SearchForm } from '@/components/search-form'
 import { HomeListingFilters } from '@/components/home-listing-filters'
 import { ProfileCard } from '@/components/profile-card'
-import { EmptyState, SectionHeader, Surface } from '@/components/ui'
+import { EmptyState, Surface } from '@/components/ui'
 
-const trustLogos = ['Perfis verificados', 'Avaliações moderadas', 'Busca por cidade e UF', 'Leads no painel']
+const heroPoints = [
+  'Busca por cidade, UF e serviço',
+  'Perfis verificados e avaliações reais',
+  'Contato direto e orçamento conforme o plano',
+]
 
-const featureCards = [
+const steps = [
   {
-    icon: ShieldCheck,
-    title: 'Perfil que transmite confiança',
-    text: 'Fotos, descrição, especialidades, cidades atendidas e reputação organizadas de forma muito mais clara.',
-    tone: 'tone-coral',
+    title: 'Busque sem complicação',
+    text: 'Digite cidade, UF ou serviço e veja primeiro quem tem mais aderência ao que o cliente procura.',
   },
   {
-    icon: MessageCircleMore,
-    title: 'Contato e orçamento no momento certo',
-    text: 'Nos planos pagos o visitante chega mais rápido ao WhatsApp, telefone, site ou pedido de orçamento.',
-    tone: 'tone-sky',
+    title: 'Compare com segurança',
+    text: 'Fotos, especialidades, cidades atendidas, avaliação e selo aparecem com leitura rápida e objetiva.',
   },
   {
-    icon: Crown,
-    title: 'Mais visibilidade para quem investe',
-    text: 'Ranking comercial, verificação e prova social aumentam percepção de valor e ajudam a vender melhor.',
-    tone: 'tone-violet',
+    title: 'Converta em contato',
+    text: 'WhatsApp, telefone ou orçamento entram no momento certo, sem poluir a navegação.',
   },
 ]
 
-const journey = [
+const highlights = [
   {
-    step: '01',
-    title: 'Busca simples e direta',
-    text: 'Cidade, UF e especialidade aparecem logo no topo em um formato mais aberto e menos espremido.',
+    icon: ShieldCheck,
+    title: 'Mais confiança na leitura do perfil',
+    text: 'Perfis organizados para o visitante entender rápido se encontrou o profissional certo.',
   },
   {
-    step: '02',
-    title: 'Perfis com leitura comercial',
-    text: 'O visitante entende rápido quem atende, o que faz, onde atua e por que aquele perfil parece mais confiável.',
+    icon: Star,
+    title: 'Prova social de verdade',
+    text: 'Avaliações moderadas e verificação ajudam a dar segurança antes do primeiro contato.',
   },
   {
-    step: '03',
-    title: 'Conversão para contato ou orçamento',
-    text: 'Planos melhores liberam canais mais fortes sem poluir a navegação para quem está procurando serviço.',
+    icon: MessageCircleMore,
+    title: 'Mais chance de virar contato',
+    text: 'A vitrine favorece quem precisa gerar ligação, WhatsApp ou pedido de orçamento.',
   },
 ]
 
@@ -58,9 +56,9 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
     city: homeCity,
     state: homeState,
     specialty: homeSpecialty,
-    limit: '4',
+    limit: '6',
     page: '1',
-  }).catch(() => ({ page: 1, limit: 4, total: 0, data: [] }))
+  }).catch(() => ({ page: 1, limit: 6, total: 0, data: [] }))
 
   const browseQuery = new URLSearchParams()
   if (homeCity) browseQuery.set('city', homeCity)
@@ -70,199 +68,191 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
 
   return (
     <>
-      <section className="container-app pt-8 md:pt-14">
-        <div className="hero-v5-shell">
-          <div className="hero-v5-grid">
-            <div className="hero-v5-copy">
-              <div className="eyebrow">A plataforma nacional para climatização e refrigeração</div>
-              <h1 className="hero-v5-title mt-5">
-                Encontre profissionais de <span className="gradient-text">ar-condicionado</span> e refrigeração com um visual mais confiável e uma busca mais direta.
-              </h1>
-              <p className="hero-v5-subtitle mt-5">
-                O AchaFrio conecta clientes a técnicos e empresas com páginas profissionais, prova social, verificação e estrutura comercial para gerar mais contatos em todo o Brasil.
-              </p>
+      <section className="container-app pt-8 md:pt-12">
+        <div className="grid gap-6 xl:grid-cols-[1.15fr_0.85fr] xl:items-stretch">
+          <div className="glass rounded-[36px] border px-6 py-8 md:px-9 md:py-10">
+            <div className="eyebrow">Encontre e compare profissionais com mais clareza</div>
+            <h1 className="mt-5 max-w-[11ch] text-[clamp(2.7rem,5.5vw,5.2rem)] font-black leading-[0.94] tracking-[-0.07em] text-white">
+              Ache um técnico com mais segurança e menos perda de tempo.
+            </h1>
+            <p className="mt-5 max-w-2xl text-[1.02rem] leading-8 text-slate-300 md:text-[1.08rem]">
+              Busque por cidade, UF ou serviço e encontre páginas mais organizadas, com avaliação, verificação e contato direto quando o plano permitir.
+            </p>
 
-              <div className="mt-7 flex flex-wrap gap-3">
-                <Link href="/buscar" className="btn-primary"><Search className="h-4 w-4" />Buscar profissionais</Link>
-                <Link href="/cadastro" className="btn-secondary">Cadastrar meu serviço</Link>
-              </div>
-
-              <div className="hero-microproof mt-8">
-                <div className="hero-proof-card tone-mint">
-                  <div className="hero-proof-value">4x</div>
-                  <div className="hero-proof-label">Mais percepção de confiança</div>
-                </div>
-                <div className="hero-proof-card tone-coral">
-                  <div className="hero-proof-value">PRO+</div>
-                  <div className="hero-proof-label">Leads e orçamento no painel</div>
-                </div>
-                <div className="hero-proof-card tone-violet">
-                  <div className="hero-proof-value">SEO</div>
-                  <div className="hero-proof-label">Perfis pensados para cidade e especialidade</div>
-                </div>
-              </div>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <Link href="#busca-home" className="btn-primary"><Search className="h-4 w-4" />Buscar profissionais</Link>
+              <Link href="/cadastro" className="btn-secondary">Cadastrar meu serviço</Link>
             </div>
 
-            <div className="hero-v5-side">
-              <Surface className="hero-showcase p-5 md:p-6">
-                <div className="flex items-center justify-between gap-3">
-                  <div>
-                    <div className="eyebrow">Painel de confiança</div>
-                    <div className="mt-4 text-2xl font-black tracking-[-0.04em] text-white md:text-[2.2rem]">Mais clareza. Menos ruído.</div>
-                  </div>
-                  <span className="badge bg-emerald-500/12 text-emerald-200"><BadgeCheck className="h-4 w-4" />Verificados</span>
-                </div>
-
-                <div className="hero-side-stack mt-6">
-                  <div className="hero-side-panel tone-sky">
-                    <div className="flex items-center gap-3">
-                      <div className="hero-side-icon"><MapPinned className="h-4 w-4" /></div>
-                      <div>
-                        <div className="text-sm font-semibold text-white">Busca por cidade e UF</div>
-                        <div className="mt-1 text-sm text-slate-300">Campos maiores e foco total na intenção de busca.</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="hero-side-panel tone-violet">
-                    <div className="flex items-center gap-3">
-                      <div className="hero-side-icon"><Star className="h-4 w-4" /></div>
-                      <div>
-                        <div className="text-sm font-semibold text-white">Reputação mais visível</div>
-                        <div className="mt-1 text-sm text-slate-300">Avaliações e selo aparecem com melhor hierarquia.</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="hero-side-panel tone-coral">
-                    <div className="flex items-center gap-3">
-                      <div className="hero-side-icon"><WalletCards className="h-4 w-4" /></div>
-                      <div>
-                        <div className="text-sm font-semibold text-white">Planos mais tangíveis</div>
-                        <div className="mt-1 text-sm text-slate-300">Fica mais fácil entender o ganho real entre FREE, STARTER, PRO e PREMIUM.</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Surface>
+            <div className="mt-8 grid gap-3 sm:grid-cols-3">
+              <div className="rounded-[24px] border border-white/10 bg-white/[0.03] p-4">
+                <div className="text-3xl font-black tracking-[-0.06em] text-white">24h</div>
+                <p className="mt-2 text-sm leading-6 text-slate-300">Seu perfil pode entrar no ar rapidamente depois do cadastro.</p>
+              </div>
+              <div className="rounded-[24px] border border-cyan-400/15 bg-cyan-400/[0.06] p-4">
+                <div className="text-3xl font-black tracking-[-0.06em] text-white">PRO+</div>
+                <p className="mt-2 text-sm leading-6 text-slate-300">Planos pagos liberam mais destaque, contato e orçamento.</p>
+              </div>
+              <div className="rounded-[24px] border border-violet-400/15 bg-violet-400/[0.06] p-4">
+                <div className="text-3xl font-black tracking-[-0.06em] text-white">SEO</div>
+                <p className="mt-2 text-sm leading-6 text-slate-300">Perfis prontos para cidade, estado e especialidade.</p>
+              </div>
             </div>
           </div>
 
-          <Surface className="hero-search-band mt-6 p-4 md:p-5 lg:p-6">
-            <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
-              <div className="max-w-xl">
-                <div className="eyebrow">Busca inteligente</div>
-                <div className="mt-3 text-2xl font-black tracking-[-0.04em] text-white md:text-[2.1rem]">Ache mais rápido sem campos apertados.</div>
-                <p className="mt-2 text-sm leading-7 text-slate-300 md:text-[0.98rem]">Procure por cidade, UF ou especialidade e vá direto para quem tem aderência ao serviço que você precisa.</p>
+          <div className="grid gap-6">
+            <Surface className="overflow-hidden rounded-[36px] border bg-[linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01))] p-6 md:p-7">
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <div className="eyebrow">Como o visitante enxerga</div>
+                  <h2 className="mt-4 text-[clamp(1.7rem,2.6vw,2.5rem)] font-black leading-[1.02] tracking-[-0.05em] text-white">
+                    Uma busca mais limpa. Um perfil mais convincente.
+                  </h2>
+                </div>
+                <span className="badge bg-emerald-500/12 text-emerald-100"><BadgeCheck className="h-4 w-4" />Verificados</span>
               </div>
-              <div className="lg:min-w-[58%] lg:flex-1">
-                <Suspense fallback={<div className="rounded-[24px] border border-white/10 bg-white/3 p-4 text-sm text-slate-400">Carregando busca…</div>}>
-                  <SearchForm />
-                </Suspense>
-              </div>
-            </div>
-          </Surface>
 
-          <div className="hero-trust-bar mt-5">
-            {trustLogos.map((item) => (
-              <span key={item} className="meta-chip"><Sparkles className="h-4 w-4" />{item}</span>
-            ))}
+              <div className="mt-6 rounded-[28px] border border-white/10 bg-slate-950/45 p-4 md:p-5">
+                <div className="grid gap-3 sm:grid-cols-[1.3fr_0.55fr_1fr_auto]">
+                  <div className="rounded-[20px] border border-white/8 bg-white/[0.03] px-4 py-3">
+                    <div className="text-[0.68rem] font-bold uppercase tracking-[0.18em] text-cyan-100">Cidade</div>
+                    <div className="mt-2 text-sm text-slate-300">Campinas</div>
+                  </div>
+                  <div className="rounded-[20px] border border-white/8 bg-white/[0.03] px-4 py-3">
+                    <div className="text-[0.68rem] font-bold uppercase tracking-[0.18em] text-cyan-100">UF</div>
+                    <div className="mt-2 text-sm text-slate-300">SP</div>
+                  </div>
+                  <div className="rounded-[20px] border border-white/8 bg-white/[0.03] px-4 py-3">
+                    <div className="text-[0.68rem] font-bold uppercase tracking-[0.18em] text-cyan-100">Serviço</div>
+                    <div className="mt-2 text-sm text-slate-300">Instalação e manutenção</div>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="inline-flex min-h-[58px] w-full items-center justify-center rounded-[20px] bg-gradient-to-r from-cyan-500 via-sky-500 to-violet-500 px-5 text-sm font-semibold text-white shadow-[0_18px_44px_rgba(75,124,255,0.34)]">Encontrar</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-5 grid gap-3">
+                {heroPoints.map((item) => (
+                  <div key={item} className="flex items-start gap-3 rounded-[22px] border border-white/8 bg-white/[0.03] px-4 py-3 text-sm text-slate-200">
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-cyan-300" />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </Surface>
+
+            <div className="grid gap-3 sm:grid-cols-3">
+              {highlights.map((item, index) => {
+                const Icon = item.icon
+                return (
+                  <div key={item.title} className={`rounded-[28px] border p-5 ${index === 0 ? 'border-cyan-400/15 bg-cyan-400/[0.05]' : index === 1 ? 'border-violet-400/15 bg-violet-400/[0.05]' : 'border-orange-300/15 bg-orange-400/[0.05]'}`}>
+                    <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-slate-950/45 text-cyan-100">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <h3 className="text-lg font-bold tracking-[-0.03em] text-white">{item.title}</h3>
+                    <p className="mt-3 text-sm leading-7 text-slate-300">{item.text}</p>
+                  </div>
+                )
+              })}
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="home-destaques" className="container-app mt-18 md:mt-20">
-        <div className="home-listing-shell">
-          <div className="home-listing-header">
+      <section id="busca-home" className="container-app mt-10 md:mt-14">
+        <Surface className="rounded-[34px] border bg-[linear-gradient(135deg,rgba(18,30,54,0.9),rgba(6,14,28,0.98))] p-6 md:p-8">
+          <div className="grid gap-6 xl:grid-cols-[0.78fr_1.22fr] xl:items-center">
             <div>
-              <div className="eyebrow">Destaques da busca</div>
-              <h2 className="section-title-sm mt-4 max-w-3xl">Veja perfis reais já ordenados pelas regras comerciais da plataforma.</h2>
-              <p className="section-subtitle mt-4 max-w-3xl">A listagem abaixo já respeita a lógica de destaque do AchaFrio: planos mais altos aparecem antes, depois entram verificação, reputação e qualidade geral do perfil. O FREE continua público, mas fica abaixo dos pagos e sem contato liberado.</p>
+              <div className="eyebrow">Busca principal</div>
+              <h2 className="mt-4 text-[clamp(1.8rem,3vw,2.8rem)] font-black leading-[1.02] tracking-[-0.05em] text-white">
+                Comece pela cidade, estado ou serviço.
+              </h2>
+              <p className="mt-4 max-w-xl text-[0.98rem] leading-8 text-slate-300">
+                Sem formulário apertado, sem ruído e sem excesso de texto: a busca fica no centro da home para o visitante agir rápido.
+              </p>
             </div>
-            <div className="home-listing-summary">
-              <div className="listing-summary-card tone-sky">
-                <div className="listing-summary-value">{featuredResponse.total}</div>
-                <div className="listing-summary-label">perfil(is) para este filtro</div>
-              </div>
-              <div className="listing-summary-note">
-                PREMIUM, PRO e STARTER têm prioridade de visibilidade. Dentro do mesmo plano, perfis verificados e melhor reputação sobem primeiro.
-              </div>
-            </div>
+            <Suspense fallback={<div className="rounded-[24px] border border-white/10 bg-white/[0.03] p-5 text-sm text-slate-400">Carregando busca…</div>}>
+              <SearchForm />
+            </Suspense>
           </div>
+        </Surface>
+      </section>
 
-          <Surface className="tone-mint p-5 md:p-6">
-            <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-              <div>
-                <div className="text-lg font-semibold text-white">Filtre os destaques sem sair da home</div>
-                <p className="mt-2 max-w-2xl text-sm leading-7 text-slate-300">Busque por cidade, UF e especialidade. Quando quiser explorar tudo, a busca completa continua disponível.</p>
-              </div>
-              <Link href={browseHref} className="btn-secondary text-sm">Ver busca completa</Link>
+      <section id="home-destaques" className="container-app mt-16 md:mt-20">
+        <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <div className="eyebrow">Perfis em destaque agora</div>
+            <h2 className="mt-4 max-w-3xl text-[clamp(2rem,3.4vw,3rem)] font-black leading-[1.02] tracking-[-0.05em] text-white">
+              A home já mostra profissionais reais seguindo a ordem de destaque do sistema.
+            </h2>
+            <p className="mt-4 max-w-3xl text-[0.98rem] leading-8 text-slate-300">
+              PREMIUM, PRO e STARTER aparecem primeiro. Dentro do mesmo plano, entram verificação, reputação e qualidade geral do perfil.
+            </p>
+          </div>
+          <div className="rounded-[24px] border border-white/8 bg-white/[0.03] px-5 py-4 text-sm text-slate-300 lg:max-w-[320px]">
+            <div className="text-3xl font-black tracking-[-0.06em] text-white">{featuredResponse.total}</div>
+            <div className="mt-1">perfil(is) para o filtro atual</div>
+          </div>
+        </div>
+
+        <Surface className="mt-7 rounded-[32px] border bg-[linear-gradient(180deg,rgba(255,255,255,0.035),rgba(255,255,255,0.015))] p-5 md:p-6">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+            <div>
+              <div className="text-lg font-bold tracking-[-0.03em] text-white">Filtre a vitrine sem sair da home</div>
+              <p className="mt-2 text-sm leading-7 text-slate-300">Refine por cidade, UF e especialidade. Quando quiser explorar tudo, continue na busca completa.</p>
             </div>
-            <div className="mt-5">
+            <Link href={browseHref} className="btn-secondary text-sm">Ver busca completa <ArrowRight className="h-4 w-4" /></Link>
+          </div>
+          <div className="mt-5">
+            <Suspense fallback={<div className="rounded-[24px] border border-white/8 bg-white/[0.03] p-4 text-sm text-slate-400">Carregando filtros…</div>}>
               <HomeListingFilters />
-            </div>
-          </Surface>
+            </Suspense>
+          </div>
+        </Surface>
 
-          <div className="home-listing-grid mt-6">
-            {featuredResponse.data.length ? (
-              featuredResponse.data.map((profile) => <ProfileCard key={profile.id} profile={profile} />)
-            ) : (
+        <div className="mt-7 grid gap-5 lg:grid-cols-2 xl:grid-cols-3">
+          {featuredResponse.data.length ? (
+            featuredResponse.data.map((profile) => <ProfileCard key={profile.id} profile={profile} />)
+          ) : (
+            <div className="lg:col-span-2 xl:col-span-3">
               <EmptyState
-                className="lg:col-span-2"
                 title="Nenhum perfil apareceu com esse filtro."
-                description="Experimente buscar só por cidade ou apenas pela especialidade. A home mostra um recorte; a página de busca completa continua disponível para aprofundar."
+                description="Tente buscar só pela cidade ou remova a especialidade. A busca completa continua disponível para aprofundar mais os resultados."
                 action={<Link href="/buscar" className="btn-secondary text-sm">Abrir busca completa</Link>}
               />
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </section>
 
-      <section className="container-app mt-20">
-        <div className="grid gap-6 lg:grid-cols-[1.04fr_0.96fr] lg:items-start">
-          <div>
-            <SectionHeader
-              eyebrow="Uma home mais comercial"
-              title="Menos texto jogado na tela. Mais ritmo, contraste e decisão visual."
-              description="A nova estrutura do topo separa mensagem, prova de valor e busca de forma mais elegante. Em vez de um bloco esmagado, a home agora organiza o que realmente importa para quem busca e para quem quer anunciar serviço."
-              compact
-            />
-          </div>
-          <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
-            {featureCards.map((item) => {
-              const Icon = item.icon
-              return (
-                <Surface key={item.title} className={`${item.tone} card-hover p-5 md:p-6`}>
-                  <div className="feature-icon"><Icon className="h-5 w-5" /></div>
-                  <div className="mt-5 text-lg font-semibold text-white">{item.title}</div>
-                  <div className="mt-3 text-sm leading-7 text-slate-300">{item.text}</div>
-                </Surface>
-              )
-            })}
-          </div>
-        </div>
-      </section>
-
-      <section className="container-app mt-20">
-        <div className="grid gap-6 lg:grid-cols-[0.92fr_1.08fr]">
-          <Surface className="tone-mint p-6 md:p-8 lg:p-10">
+      <section className="container-app mt-18 md:mt-22">
+        <div className="grid gap-6 xl:grid-cols-[0.92fr_1.08fr] xl:items-start">
+          <Surface className="rounded-[34px] border bg-[linear-gradient(145deg,rgba(255,173,120,0.08),rgba(255,255,255,0.015))] p-6 md:p-8">
             <div className="eyebrow">Como funciona</div>
-            <h2 className="section-title-sm mt-4 max-w-[16ch]">A plataforma conduz o visitante até o contato com mais naturalidade.</h2>
-            <p className="section-subtitle mt-4 max-w-xl">A experiência pública não tenta falar tudo de uma vez. Ela distribui melhor a informação para destacar busca, reputação, especialidades, localização e intenção comercial.</p>
-            <div className="mt-8 grid gap-3 sm:grid-cols-2">
-              <div className="mini-quote tone-sky">Busca com foco comercial</div>
-              <div className="mini-quote tone-coral">Perfis com prova social</div>
-              <div className="mini-quote tone-violet">Planos com benefício real</div>
-              <div className="mini-quote tone-mint">Dashboard com ação prática</div>
+            <h2 className="mt-4 text-[clamp(2rem,3vw,2.9rem)] font-black leading-[1.03] tracking-[-0.05em] text-white">
+              Uma home pensada para levar o visitante até a ação.
+            </h2>
+            <p className="mt-4 text-[0.98rem] leading-8 text-slate-300">
+              Em vez de empilhar informação, a página organiza a jornada: busca, comparação e contato. É isso que torna o AchaFrio mais comercial para quem anuncia.
+            </p>
+            <div className="mt-7 flex flex-wrap gap-2">
+              <span className="meta-chip"><Sparkles className="h-4 w-4" />Busca simples</span>
+              <span className="meta-chip"><ShieldCheck className="h-4 w-4" />Perfis confiáveis</span>
+              <span className="meta-chip"><Zap className="h-4 w-4" />Mais conversão</span>
             </div>
           </Surface>
 
           <div className="grid gap-4">
-            {journey.map((item, index) => (
-              <Surface key={item.step} className={index === 0 ? 'tone-sky p-5 md:p-6' : index === 1 ? 'tone-coral p-5 md:p-6' : 'tone-violet p-5 md:p-6'}>
-                <div className="journey-card">
-                  <div className="journey-step">{item.step}</div>
+            {steps.map((item, index) => (
+              <Surface key={item.title} className="rounded-[28px] border p-5 md:p-6">
+                <div className="flex flex-col gap-4 md:flex-row md:items-start">
+                  <div className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.03] text-sm font-black text-cyan-100">
+                    {String(index + 1).padStart(2, '0')}
+                  </div>
                   <div>
-                    <div className="text-lg font-semibold text-white">{item.title}</div>
-                    <p className="mt-2 text-sm leading-7 text-slate-300">{item.text}</p>
+                    <h3 className="text-xl font-bold tracking-[-0.03em] text-white">{item.title}</h3>
+                    <p className="mt-3 text-sm leading-7 text-slate-300">{item.text}</p>
                   </div>
                 </div>
               </Surface>
@@ -271,29 +261,37 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
         </div>
       </section>
 
-      <section className="container-app mt-20">
-        <SectionHeader
-          eyebrow="Planos"
-          title="Posicionamento comercial com ganho de percepção visível."
-          description="Os planos continuam claros, mas agora entram depois de uma home que prepara melhor o visitante para entender valor, confiança e visibilidade."
-          align="center"
-          compact
-        />
-        <div className="mt-10">
+      <section className="container-app mt-18 md:mt-22">
+        <div className="text-center">
+          <div className="eyebrow mx-auto">Planos</div>
+          <h2 className="mx-auto mt-4 max-w-4xl text-[clamp(2rem,3.4vw,3.1rem)] font-black leading-[1.02] tracking-[-0.05em] text-white">
+            Planos claros para quem quer sair do gratuito e ganhar visibilidade real.
+          </h2>
+          <p className="mx-auto mt-4 max-w-3xl text-[0.98rem] leading-8 text-slate-300">
+            A diferença entre os planos fica prática: mais exposição, mais contato, mais reputação e mais chance de receber orçamento.
+          </p>
+        </div>
+
+        <div className="mt-8">
           <PricingGrid />
         </div>
       </section>
 
-      <section className="container-app mt-20 mb-6">
-        <Surface className="hero-final-band p-6 md:p-8 lg:p-10">
+      <section className="container-app mt-18 md:mt-22 pb-6 md:pb-10">
+        <Surface className="rounded-[36px] border bg-[linear-gradient(145deg,rgba(63,180,255,0.11),rgba(125,109,255,0.08),rgba(255,255,255,0.02))] p-7 md:p-10">
           <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
-              <div className="eyebrow">Chamada final</div>
-              <h2 className="section-title-sm mt-4 max-w-3xl">Crie um perfil que passe confiança, aumente valor percebido e gere mais contatos.</h2>
-              <p className="section-subtitle mt-4 max-w-2xl">Comece no FREE, ajuste seu perfil no painel e suba de plano quando quiser liberar contato, reputação, ranking e geração de orçamentos.</p>
+              <div className="eyebrow">Para começar</div>
+              <h2 className="mt-4 max-w-3xl text-[clamp(2rem,3.3vw,3rem)] font-black leading-[1.02] tracking-[-0.05em] text-white">
+                Crie seu perfil, organize sua vitrine e transforme visitas em contato.
+              </h2>
+              <p className="mt-4 max-w-2xl text-[0.98rem] leading-8 text-slate-300">
+                Comece no FREE, complete o perfil no painel e faça upgrade quando quiser destravar contato, reputação, ranking e orçamento.
+              </p>
             </div>
+
             <div className="flex flex-wrap gap-3 lg:justify-end">
-              <Link href="/cadastro" className="btn-primary">Cadastrar meu perfil <ArrowRight className="h-4 w-4" /></Link>
+              <Link href="/cadastro" className="btn-primary">Cadastrar meu perfil</Link>
               <Link href="/planos" className="btn-secondary">Ver planos</Link>
             </div>
           </div>
