@@ -112,17 +112,17 @@ img { max-width: 100%; display: block; }
   font-family: var(--font-heading), Inter, sans-serif;
 }
 .section-title {
-  font-size: clamp(2.55rem, 4.9vw, 4.25rem);
-  line-height: 1.02;
+  font-size: clamp(2.25rem, 4.1vw, 3.6rem);
+  line-height: 1.04;
   font-weight: 900;
-  letter-spacing: -0.055em;
+  letter-spacing: -0.05em;
   text-wrap: balance;
 }
 .section-title-sm {
-  font-size: clamp(1.9rem, 3vw, 2.9rem);
-  line-height: 1.06;
+  font-size: clamp(1.75rem, 2.5vw, 2.6rem);
+  line-height: 1.08;
   font-weight: 850;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.04em;
   text-wrap: balance;
 }
 .section-subtitle {
@@ -316,3 +316,236 @@ img { max-width: 100%; display: block; }
 }
 
 .h-13 { height: 3.25rem; }
+
+
+.hero-v5-shell {
+  position: relative;
+}
+.hero-v5-grid {
+  display: grid;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+.hero-v5-copy,
+.hero-v5-side {
+  min-width: 0;
+}
+.hero-v5-copy {
+  padding: 1.4rem 0 0.25rem;
+}
+.hero-v5-title {
+  font-family: var(--font-heading), Inter, sans-serif;
+  font-size: clamp(2.3rem, 4.3vw, 4rem);
+  line-height: 1.02;
+  font-weight: 900;
+  letter-spacing: -0.055em;
+  max-width: 12.2ch;
+  text-wrap: balance;
+}
+.hero-v5-subtitle {
+  max-width: 60ch;
+  color: var(--muted-strong);
+  font-size: clamp(1rem, 1.25vw, 1.1rem);
+  line-height: 1.85;
+}
+.hero-showcase {
+  height: 100%;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(97, 211, 255, 0.17), transparent 28%),
+    radial-gradient(circle at 0% 100%, rgba(255, 143, 115, 0.12), transparent 20%),
+    linear-gradient(145deg, rgba(10, 20, 37, 0.94), rgba(8, 14, 26, 0.92));
+}
+.hero-side-stack {
+  display: grid;
+  gap: 0.9rem;
+}
+.hero-side-panel {
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,0.09);
+  background: rgba(255,255,255,0.04);
+  padding: 1rem;
+}
+.hero-side-icon,
+.feature-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.08);
+  color: white;
+}
+.feature-icon {
+  background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05));
+}
+.hero-search-band {
+  background:
+    radial-gradient(circle at 0% 100%, rgba(45, 224, 181, 0.12), transparent 20%),
+    radial-gradient(circle at 100% 0%, rgba(125, 109, 255, 0.12), transparent 20%),
+    linear-gradient(135deg, rgba(14, 23, 43, 0.92), rgba(9, 17, 31, 0.9));
+}
+.hero-trust-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+.hero-microproof {
+  display: grid;
+  gap: 0.9rem;
+  margin-top: 2rem;
+}
+.hero-proof-card {
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,0.09);
+  padding: 1.05rem 1rem;
+  background: rgba(255,255,255,0.04);
+}
+.hero-proof-value {
+  font-family: var(--font-heading), Inter, sans-serif;
+  font-size: clamp(1.35rem, 2vw, 2rem);
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  color: white;
+}
+.hero-proof-label {
+  margin-top: 0.3rem;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--muted-strong);
+}
+.search-form-v5 {
+  display: grid;
+  gap: 0.85rem;
+}
+.search-slot {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  min-width: 0;
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.045);
+  padding: 0.9rem 1rem;
+  min-height: 72px;
+}
+.search-slot-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 999px;
+  background: rgba(63,180,255,0.15);
+  color: #bfe9ff;
+  flex-shrink: 0;
+}
+.search-slot-icon.is-violet {
+  background: rgba(125,109,255,0.15);
+  color: #dad5ff;
+}
+.search-slot-copy {
+  min-width: 0;
+  display: grid;
+  gap: 0.2rem;
+  width: 100%;
+}
+.search-slot-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: #9bcfdd;
+}
+.search-input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: white;
+  outline: none;
+  font-size: 1rem;
+}
+.search-input::placeholder {
+  color: #7f90a7;
+}
+.search-submit {
+  min-height: 72px;
+  width: 100%;
+}
+.journey-card {
+  display: grid;
+  gap: 1rem;
+  align-items: start;
+}
+.journey-step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.08);
+  color: white;
+  font-size: 0.92rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+.mini-quote {
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,0.10);
+  padding: 0.95rem 1rem;
+  background: rgba(255,255,255,0.045);
+  font-size: 0.93rem;
+  font-weight: 700;
+  color: white;
+}
+.hero-final-band {
+  background:
+    radial-gradient(circle at 0% 0%, rgba(255, 143, 115, 0.15), transparent 20%),
+    radial-gradient(circle at 100% 100%, rgba(63, 180, 255, 0.14), transparent 24%),
+    linear-gradient(135deg, rgba(12, 20, 38, 0.95), rgba(8, 15, 27, 0.92));
+}
+.tone-coral {
+  background-image: linear-gradient(180deg, rgba(255, 143, 115, 0.10), rgba(255,255,255,0.02));
+}
+.tone-violet {
+  background-image: linear-gradient(180deg, rgba(125, 109, 255, 0.11), rgba(255,255,255,0.02));
+}
+.tone-sky {
+  background-image: linear-gradient(180deg, rgba(63, 180, 255, 0.11), rgba(255,255,255,0.02));
+}
+.tone-mint {
+  background-image: linear-gradient(180deg, rgba(45, 224, 181, 0.10), rgba(255,255,255,0.02));
+}
+
+@media (min-width: 768px) {
+  .hero-microproof {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .journey-card {
+    grid-template-columns: auto 1fr;
+  }
+  .search-form-v5 {
+    grid-template-columns: minmax(0, 1.55fr) 110px minmax(0, 1.2fr) 180px;
+    align-items: stretch;
+  }
+  .search-slot-sm {
+    justify-content: center;
+  }
+}
+@media (min-width: 1100px) {
+  .hero-v5-grid {
+    grid-template-columns: minmax(0, 1.08fr) minmax(420px, 0.92fr);
+    gap: 2rem;
+  }
+}
+@media (max-width: 767px) {
+  .hero-v5-title {
+    max-width: 11.6ch;
+  }
+  .hero-side-stack,
+  .hero-microproof {
+    grid-template-columns: 1fr;
+  }
+}
