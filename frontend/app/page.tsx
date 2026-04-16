@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { Suspense } from 'react'
 import { ArrowRight, BadgeCheck, Building2, MessageCircle, Quote, Search, ShieldCheck, Star } from 'lucide-react'
 import { PricingGrid } from '@/components/pricing'
 import { SearchForm } from '@/components/search-form'
@@ -53,7 +54,11 @@ export default function HomePage() {
               </div>
 
               <div className="mt-6">
-                <SearchForm />
+                <Suspense
+                  fallback={<div className="glass rounded-[28px] border p-5 text-sm text-slate-400">Carregando busca…</div>}
+                >
+                  <SearchForm />
+                </Suspense>
               </div>
 
               <div className="mt-6 grid gap-4 md:grid-cols-2">
